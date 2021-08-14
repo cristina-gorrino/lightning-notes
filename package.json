@@ -1,0 +1,24 @@
+{
+  "name": "lightning-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "engines": {
+    "node": "16.4.2"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "server": "node server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  }
+}
