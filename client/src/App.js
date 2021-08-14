@@ -1,36 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-//import pages created
+import React, { useState, useEffect } from "react";
 
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
+import Login from "./components/Login";
+import Note from "./components/Note";
 
 function App() {
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/matchup">
-              <Matchup />
-            </Route>
-            <Route exact path="/matchup/:id">
-              <Vote />
-            </Route>
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </ApolloProvider>
-  );
+  const [isLogin, setIsLogin] = useState(false);
+
+  return <div className="App">{isLogin ? <Note /> : <Login />}</div>;
 }
 
 export default App;
