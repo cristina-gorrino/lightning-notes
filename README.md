@@ -1,2 +1,2 @@
 Starting the project
-add a branch(Mike)
+Adding a branch
