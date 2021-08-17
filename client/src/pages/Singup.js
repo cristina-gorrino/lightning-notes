@@ -31,7 +31,7 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...user },
       });
-
+      console.log ('~~~');
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -52,7 +52,7 @@ const Signup = () => {
             <form onSubmit={registerSubmit}>
               <input
                 type="text"
-                name="name"
+                name="username"
                 placeholder="User Name"
                 required
                 value={user.name}
