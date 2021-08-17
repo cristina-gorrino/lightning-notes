@@ -1,6 +1,6 @@
 //add models name and their path ./
-// const  = require('./');
-// const  = require('./');
+ const User  = require('./User');
+const Note = require('./Note');
 
 //export models
-//module.exports = { ,  };
+module.exports = { User, Note };
