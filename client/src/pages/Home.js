@@ -1,12 +1,12 @@
 import React from "react";
 
-import NOteForm from "../components/Nots";
+import NoteForm from "../components/Notes";
 
 const Home = () => {
   return (
     <main>
       <div>
-        <NOteForm />
+        <NoteForm />
         <div>note form goes here</div>
       </div>
     </main>
