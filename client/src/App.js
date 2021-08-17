@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Singup";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -35,12 +37,14 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <Header />
         <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/signup">
           <Signup />
         </Route>
+        <Footer />
       </Router>
     </ApolloProvider>
   );
