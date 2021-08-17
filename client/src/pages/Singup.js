@@ -1,58 +1,67 @@
 // import React, { useState } from "react";
 // import { Link } from "react-router-dom";
+
 // import { useMutation } from "@apollo/client";
-// import { LOGIN_USER } from "../utils/mutations";
+// import { ADD_USER } from "../utils/mutations";
 
 // import Auth from "../utils/auth";
 
-// const Login = (props) => {
+// const Signup = () => {
 //   const [user, setUser] = useState({
+//     username: "",
 //     email: "",
 //     password: "",
 //   });
-
-//   const [login, { error, data }] = useMutation(LOGIN_USER);
+//   const [addUser, { error, data }] = useMutation(ADD_USER);
 
 //   const onChangeInput = (e) => {
 //     const { name, value } = e.target;
-//     setUser({ ...user, [name]: value });
+
+//     setUser({
+//       ...user,
+//       [name]: value,
+//     });
 //   };
 
-//   const handleFormSubmit = async (e) => {
+//   const registerSubmit = async (e) => {
 //     e.preventDefault();
 //     console.log(user);
+
 //     try {
-//       const { data } = await login({
+//       const { data } = await addUser({
 //         variables: { ...user },
 //       });
 
-//       Auth.login(data.login.token);
+//       Auth.login(data.addUser.token);
 //     } catch (err) {
 //       console.error(err);
 //     }
-
-//     setUser({
-//       email: "",
-//       password: "",
-//     });
 //   };
 
 //   return (
 //     <main>
 //       <section>
-//         <div className="login">
-//           <h2>Login</h2>
+//         <div className="sign-up">
+//           <h2>Register</h2>
 //           {data ? (
 //             <p>
 //               Success! You may now head{" "}
 //               <Link to="/">back to the homepage.</Link>
 //             </p>
 //           ) : (
-//             <form onSubmit={handleFormSubmit}>
+//             <form onSubmit={registerSubmit}>
+//               <input
+//                 type="text"
+//                 name="name"
+//                 placeholder="User Name"
+//                 required
+//                 value={user.name}
+//                 onChange={onChangeInput}
+//               />
 //               <input
 //                 type="email"
 //                 name="email"
-//                 id="login-email"
+//                 id="sign-up-email"
 //                 placeholder="Email"
 //                 required
 //                 value={user.email}
@@ -65,26 +74,22 @@
 //                 placeholder="password"
 //                 required
 //                 value={user.password}
+//                 autoComplete="true"
 //                 onChange={onChangeInput}
 //               />
-//               <button type="submit">login</button>
-//               <p>
-//                 You don't have an account?
-//                 <span>Sing Up here</span>
-//               </p>
+//               <button type="submit">Sign Up</button>
 //             </form>
 //           )}
 
-//           {error && (
-//             <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-//           )}
+//           {error && <div className="error">{error.message}</div>}
 //         </div>
 //       </section>
 //     </main>
 //   );
 // };
 
-// export default Login;
+// export default Signup;
+
 
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -100,46 +105,44 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
 
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { ADD_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
-const Login = (props) => {
+const Signup = () => {
   const [user, setUser] = useState({
+    username: "",
     email: "",
     password: "",
   });
-
   // eslint-disable-next-line no-unused-vars
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    console.log(user);
-    try {
-      const { data } = await login({
-        variables: { ...user },
-      });
-
-      Auth.login(data.login.token);
-    } catch (err) {
-      console.error(err);
-    }
 
     setUser({
-      email: "",
-      password: "",
+      ...user,
+      [name]: value,
     });
   };
 
+  const registerSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...user },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 function Copyright() {
   return (
@@ -167,64 +170,87 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  title: { 
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center', 
-    marginTop: '25px'
-  }
 }));
 
-// function SignIn() {
+// export default function SignUp() {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
-      <h1 className={classes.title}><FlashOnIcon />Lightning Notes<FlashOnIcon /></h1>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
-        <form onSubmit={handleFormSubmit} className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            type="email"
-            name="email"
-            id="login-email"
-            label="Email Address"
-            autoComplete="email"
-            value={user.email}
-            onChange={onChangeInput}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            value={user.password}
-            onChange={onChangeInput}
-          />
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
+        <form onSubmit={registerSubmit} className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                type="text"
+                name="name"
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                label="User Name"
+                value={user.name}
+                onChange={onChangeInput}
+                autoFocus
+              />
+            </Grid>
+            {/* <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid> */}
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                type="email"
+                required
+                fullWidth
+                id="sign-up-email"
+                label="Email Address"
+                name="email"
+                value={user.email}
+                onChange={onChangeInput}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={user.password}
+                onChange={onChangeInput}
+                autoComplete="true"
+              />
+            </Grid>
+            {/* <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid> */}
+          </Grid>
           <Button
             type="submit"
             fullWidth
@@ -232,27 +258,21 @@ const useStyles = makeStyles((theme) => ({
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
-          <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={5}>
         <Copyright />
       </Box>
     </Container>
   );
 }
-
-export default Login;
+export default Signup;
