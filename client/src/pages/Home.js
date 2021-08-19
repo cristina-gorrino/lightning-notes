@@ -1,16 +1,18 @@
 import React from "react";
 
-import NoteForm from "../components/Notes";
+import Category from "../components/Notes/Category";
 
 const Home = () => {
   return (
     <main>
-      <div>
-        <NoteForm />
-        <div>note form goes here</div>
-      </div>
+      
+        <div>
+          <Category />
+        </div>
+      
     </main>
   );
 };
 
 export default Home;
+
