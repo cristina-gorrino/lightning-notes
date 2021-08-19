@@ -6,6 +6,21 @@ const typeDefs = gql`
       username: String!
       email: String!
       password: String!
+      notes: [Note]
+  }
+
+  type Note {
+      _id: ID
+      title: String!
+      text: String!
+      createdAt: String
+      starred: Boolean!
+      category: Category
+  }
+
+  type Category {
+      _id: ID
+      name: String!
   }
 
   type Auth {
