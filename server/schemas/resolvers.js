@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Note, Category } = require('../models');
 const {signToken} = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -34,5 +34,16 @@ const resolvers = {
     }
   },
 };
+
+addNote: async (parent, { title, text, noteAuthor }) => {
+  const note = await Note.create({ title, text, noteAuthor });
+
+  await User.findOneAndUpdate(
+    { username: noteAuthor },
+    { $addToSet: { notes: note._id } }
+  );
+
+  return note;
+}
 
 module.exports = resolvers;
