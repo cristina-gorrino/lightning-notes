@@ -6,7 +6,11 @@ const resolvers = {
   Query: {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('notes');
-    }
+    },
+    notes: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Note.find({noteAuthor: params.username}).sort({ createdAt: -1 });
+    },
     
   },
   Mutation: {
