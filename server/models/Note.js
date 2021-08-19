@@ -10,6 +10,10 @@ const noteSchema = new Schema({
       type: String,
       required: true,
   },
+  noteAuthor: {
+      type: String,
+      required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -17,7 +21,8 @@ const noteSchema = new Schema({
   },
   starred: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
   },
   category: 
   {
