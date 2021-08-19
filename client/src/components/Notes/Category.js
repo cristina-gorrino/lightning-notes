@@ -5,15 +5,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
     backgroundColor: '#33FF3F',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
   },
   title: {
     fontSize: 14,
@@ -23,14 +19,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Category() {
+export default function Category(props) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Category Name
+          { props.name }
         </Typography>
       </CardContent>
     </Card>
