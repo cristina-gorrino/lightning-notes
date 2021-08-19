@@ -39,15 +39,12 @@ const Signup = () => {
   };
 
   const registerSubmit = async (e) => {
-    console.log('!!!!')
     e.preventDefault();
-    console.log(user);
 
     try {
       const { data } = await addUser({
         variables: { ...user },
       });
-      console.log('~~~');
       console.log(data);
 
       Auth.login(data.addUser.token);
