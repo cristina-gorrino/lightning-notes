@@ -23,3 +23,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_NOTE = gql`
+  mutation addNote($title: String!, $text: String!, $noteAuthor: String!) {
+    addNote(title: $title, text: $text, noteAuthor: $noteAuthor) {
+      _id
+      title
+      text
+      noteAuthor
+      createdAt
+      starred
+    }
+  }
+`;

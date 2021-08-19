@@ -5,7 +5,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     user: async (parent, { username }) => {
-      return User.findOne({ username });
+      return User.findOne({ username }).populate('notes');
     }
     
   },
@@ -31,19 +31,24 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
+
+    addNote: async (parent, { title, text, noteAuthor }) => {
+      const note = await Note.create({ title, text, noteAuthor });
+      
+    
+      await User.findOneAndUpdate(
+        { username: noteAuthor },
+        { $addToSet: { notes: note._id } }
+      );
+    
+      return note;
+    },
   },
+
+
 };
 
-addNote: async (parent, { title, text, noteAuthor }) => {
-  const note = await Note.create({ title, text, noteAuthor });
 
-  await User.findOneAndUpdate(
-    { username: noteAuthor },
-    { $addToSet: { notes: note._id } }
-  );
-
-  return note;
-}
 
 module.exports = resolvers;

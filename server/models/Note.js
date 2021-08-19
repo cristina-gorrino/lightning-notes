@@ -21,7 +21,8 @@ const noteSchema = new Schema({
   },
   starred: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
   },
   category: 
   {
