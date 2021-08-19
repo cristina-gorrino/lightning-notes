@@ -14,6 +14,7 @@ import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import CreatNote from "./components/Notes/CreateNote";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <Signup />
+        </Route>
+        <Route exact path="/creat-note">
+          <CreatNote />
         </Route>
         <Footer />
       </Router>

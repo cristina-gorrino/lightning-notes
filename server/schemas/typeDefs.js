@@ -13,6 +13,7 @@ const typeDefs = gql`
       _id: ID
       title: String!
       text: String!
+      noteAuthor: String!
       createdAt: String
       starred: Boolean!
       category: Category
@@ -35,6 +36,7 @@ const typeDefs = gql`
    type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addNote(title: String!, text: String!, noteAuthor: String!): Note
    }
 `;
 
