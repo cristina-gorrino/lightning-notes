@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container">
         <div>
           <Link to="/">
-            <h1>Lightning Note</h1>
+            <h1>Lightning Notes</h1>
           </Link>
         </div>
         <div>
