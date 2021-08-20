@@ -16,11 +16,13 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_NOTES = gql`
-  query getNotes {
-    notes {
+  query notes ($username: String!) {
+    notes(username: $username) {
       _id
-      noteText
+      title
+      text
       createdAt
+      starred
     }
   }
 `;
