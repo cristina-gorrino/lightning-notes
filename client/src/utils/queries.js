@@ -6,9 +6,9 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      notes {
         _id
-        thoughtText
+        noteText
         createdAt
       }
     }
@@ -16,7 +16,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_NOTES = gql`
-  query notes ($username: String!) {
+  query notes($username: String!) {
     notes(username: $username) {
       _id
       title
@@ -26,6 +26,34 @@ export const QUERY_NOTES = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_NOTE = gql`
+  query getSingleNote($noteId: ID!) {
+    note(noteId: $noteId) {
+      _id
+      noteText
+      noteAuthor
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      email
+      notes {
+        _id
+        noteText
+        noteAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
 // export const  = gql`
 
 // `;
