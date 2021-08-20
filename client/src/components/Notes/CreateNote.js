@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
 import { ADD_NOTE } from "../../utils/mutations";
-import { QUERY_NOTES } from "../../utils/queries";
+import { QUERY_NOTES, QUERY_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
 const CreatNoteForm = () => {
   const [noteText, setNoteText] = useState("");
-  //   {
-  //     title: "",
-  //     content: "",
-  //     createdAt: "",
-  //   }
+  // {
+  //   title: "",
+  //   text: "",
+  //   createdAt: "",
+  // }
 
-  const [characterCount, setCharacterCount] = useState(0);
+  // const [characterCount, setCharacterCount] = useState(0);
 
   const [addNote, { error }] = useMutation(ADD_NOTE, {
     update(cache, { data: { addNote } }) {
@@ -29,18 +29,31 @@ const CreatNoteForm = () => {
       } catch (e) {
         console.error(e);
       }
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, notes: [...me.notes, addNote] } },
+      });
     },
   });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log(Auth.getProfile().data.username);
+    console.log(noteText);
+    console.log(noteText.title);
+    console.log(noteText.text);
 
     try {
       const { data } = await addNote({
         variables: {
-          ...noteText,
+          // ...noteText,
+          title: noteText.title,
+          text: noteText.text,
+          noteAuthor: Auth.getProfile().data.username,
         },
       });
+      console.log(data);
 
       setNoteText("");
     } catch (err) {
@@ -49,25 +62,32 @@ const CreatNoteForm = () => {
   };
 
   const onChangeInput = (e) => {
+    // const { name, value } = e.target;
+    // // && value.length <= 280
+    // console.log(name);
+    // if (name === "noteText" && value.length <= 280) {
+    //   setNoteText(value);
+    //   setCharacterCount(value.length);
+    // }
     const { name, value } = e.target;
 
-    if (name === "noteText" && value.length <= 280) {
-      setNoteText(value);
-      setCharacterCount(value.length);
-    }
+    setNoteText({
+      ...noteText,
+      [name]: value,
+    });
   };
 
   return (
     <div className="create-note">
       {Auth.loggedIn() ? (
         <>
-          <p
+          {/* <p
             className={`m-0 ${
               characterCount === 280 || error ? "text-danger" : ""
             }`}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
 
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">
@@ -82,12 +102,12 @@ const CreatNoteForm = () => {
               />
             </div>
             <div className="row">
-              <label htmlFor="content">Content</label>
+              <label htmlFor="text">Content</label>
               <textarea
                 type="text"
-                value={noteText.content}
-                id="content"
-                name="content"
+                value={noteText.text}
+                id="text"
+                name="text"
                 required
                 rows="10"
                 cols="10"
@@ -98,7 +118,7 @@ const CreatNoteForm = () => {
             <div className="row">
               <label htmlFor="createdAt">Date: {noteText.createdAt}</label>
               <input
-                type="createdAt"
+                type="date"
                 value={noteText.createdAt}
                 id="createdAt"
                 name="createdAt"
@@ -106,6 +126,7 @@ const CreatNoteForm = () => {
                 onChange={onChangeInput}
               />
             </div>
+            <button type="submit">Save</button>
             {error && <div>{error.message}</div>}
           </form>
         </>
