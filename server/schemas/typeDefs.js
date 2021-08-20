@@ -38,6 +38,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addNote(title: String!, text: String!, noteAuthor: String!): Note
+    addCategory(name: String!)
    }
 `;
 

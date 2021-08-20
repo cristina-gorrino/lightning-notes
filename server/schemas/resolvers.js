@@ -48,6 +48,11 @@ const resolvers = {
     
       return note;
     },
+
+    addCategory: async (parent, { name }) => {
+      const category = await Category.create({ name });
+      return category;
+    },
   },
 
 
