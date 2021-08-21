@@ -48,14 +48,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NoteCard() {
+export default function Note(props) {
   const classes = useStyles();
 
  
 
   return (
     <Card className={classes.root}>
-      <CardHeader title="Title of Note" />
+      <CardHeader title= {props.title} />
+      <p>{props.text}</p>
+      <p>{props.date}</p>
       <form className={classes.container} noValidate>
       <TextField
         id="date"
@@ -71,7 +73,6 @@ export default function NoteCard() {
   
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Text goes here from the user.
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
