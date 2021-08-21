@@ -9,7 +9,8 @@ const resolvers = {
     },
     notes: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Note.find({params}).sort({ createdAt: -1 });
+      console.log(username);
+      return await Note.find({noteAuthor: params.username}).sort({ createdAt: -1 });
 
     },
     me: async (parent, args, context) => {
