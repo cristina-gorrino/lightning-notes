@@ -1,19 +1,59 @@
 import Note from "./Note";
-import AddNote from "./AddNote";
+import IconButton from "@material-ui/core/IconButton";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
-const NotesList = ({ notes, handleAddNote, handleDeleteNote }) => {
+const noteCards = [
+  {
+    id: 1,
+    title: 'First note',
+    text: 'testing to post',
+    date: '08-21-2021'
+  },
+  {
+    id: 2,
+    title: 'Second note',
+    text: 'testing to post',
+    date: '08-21-2021'
+  },
+  {
+    id: 3,
+    title: 'Third note',
+    text: 'testing to post',
+    date: '08-21-2021'
+  },
+  {
+    id: 4,
+    title: 'Fourth note',
+    text: 'testing to post',
+    date: '08-21-2021'
+  },
+  {
+    id: 5,
+    title: 'Fifth note',
+    text: 'testing to post',
+    date: '08-21-2021'
+  },
+
+]
+
+const NotesList = ( ) => {
   return (
     <div className="notes-list">
-      {notes.map((note) => (
+      {noteCards.map((note) => (
         <Note
-          id={note.id}
+          key={note.id}
+          title={note.title}
           text={note.text}
           date={note.date}
-          handleDeleteNote={handleDeleteNote}
+          
         />
       ))}
-      <AddNote handleAddNote={handleAddNote} />
+      
+      <IconButton aria-label="Return to Dashboard">
+          <DashboardIcon />
+      </IconButton>
     </div>
+
   );
 };
 
