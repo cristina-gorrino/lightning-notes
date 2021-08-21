@@ -38,21 +38,6 @@ export const QUERY_SINGLE_NOTE = gql`
   }
 `;
 
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      email
-      notes {
-        _id
-        text
-        noteAuthor
-        createdAt
-      }
-    }
-  }
-`;
 
 // export const  = gql`
 
