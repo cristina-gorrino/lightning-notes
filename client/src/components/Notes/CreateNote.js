@@ -20,9 +20,9 @@ const CreatNoteForm = () => {
   const [addNote, { error }] = useMutation(ADD_NOTE, {
     update(cache, { data: { addNote } }) {
       console.log(cache);
-    console.log(cache.readQuery({ query: QUERY_NOTES}));
+    console.log(cache.readQuery({ query: QUERY_NOTES, variables: {username: Auth.getProfile().data.username}}));
       try {
-        const { notes } = cache.readQuery({ query: QUERY_NOTES });
+        const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
         console.log(notes);
         cache.writeQuery({
           query: QUERY_NOTES,
