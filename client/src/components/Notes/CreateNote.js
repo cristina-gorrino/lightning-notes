@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
 import { ADD_NOTE } from "../../utils/mutations";
-import { QUERY_NOTES, QUERY_ME } from "../../utils/queries";
+import { QUERY_NOTES } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
@@ -19,21 +19,20 @@ const CreatNoteForm = () => {
 
   const [addNote, { error }] = useMutation(ADD_NOTE, {
     update(cache, { data: { addNote } }) {
+      console.log(cache);
+    console.log(cache.readQuery({ query: QUERY_NOTES}));
       try {
         const { notes } = cache.readQuery({ query: QUERY_NOTES });
-
+        console.log(notes);
         cache.writeQuery({
           query: QUERY_NOTES,
           data: { notes: [addNote, ...notes] },
+      
         });
       } catch (e) {
         console.error(e);
       }
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, notes: [...me.notes, addNote] } },
-      });
+
     },
   });
 
