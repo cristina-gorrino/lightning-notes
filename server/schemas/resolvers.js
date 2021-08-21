@@ -9,7 +9,15 @@ const resolvers = {
     },
     notes: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Note.find({noteAuthor: params.username}).sort({ createdAt: -1 });
+      return Note.find({params}).sort({ createdAt: -1 });
+
+    },
+    me: async (parent, args, context) => {
+      console.log(context.user._id)
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('notes');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     
   },

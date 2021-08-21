@@ -16,8 +16,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_NOTES = gql`
-  query notes($username: String!) {
-    notes(username: $username) {
+  query notes  {
+    notes {
       _id
       title
       text
@@ -31,7 +31,7 @@ export const QUERY_SINGLE_NOTE = gql`
   query getSingleNote($noteId: ID!) {
     note(noteId: $noteId) {
       _id
-      noteText
+      text
       noteAuthor
       createdAt
     }
@@ -46,7 +46,7 @@ export const QUERY_ME = gql`
       email
       notes {
         _id
-        noteText
+        text
         noteAuthor
         createdAt
       }
