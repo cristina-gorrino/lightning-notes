@@ -8,6 +8,7 @@ import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import { Link } from 'react-router-dom';
 
 import Auth from "../../utils/auth";
+import { Container } from "@material-ui/core";
 
 
 const NotesList = ( ) => {
@@ -22,6 +23,7 @@ const NotesList = ( ) => {
   const category = categoryQuery.data?.category ||[];
 
   return (
+    <Container style={{ height: '100%', display: 'flex', flexWrap: 'wrap', margin: '20px'}}>
     <div className="notes-list">
       {categoryQuery.loading ? (
         <div>Loading...</div>
@@ -48,8 +50,8 @@ const NotesList = ( ) => {
             
           )}
       <Link to= '/'>
-      <IconButton aria-label="Return to Dashboard">
-          <DashboardIcon />
+      <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+          <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
       </Link>
       <Link to={{pathname: "/create-note", hash: `${categoryId}`}}>
@@ -57,6 +59,7 @@ const NotesList = ( ) => {
       </Link>
 
     </div>
+    </Container>
 
   );
 };
