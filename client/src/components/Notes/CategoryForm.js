@@ -19,7 +19,7 @@ const CategoryForm = () => {
   };
   const categories = [
     "Home Task",
-    "Work task",
+    "Work Task",
     "School Task",
     "Shopping Task",
     "Other Task",
