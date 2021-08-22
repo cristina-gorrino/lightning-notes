@@ -1,9 +1,11 @@
 import Note from "./Note";
 import IconButton from "@material-ui/core/IconButton";
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import Button from '@material-ui/core/Button';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
+import { Link } from 'react-router-dom';
 import Auth from "../../utils/auth";
 
 
@@ -43,10 +45,15 @@ const NotesList = ( ) => {
               
             
           )}
-      
+      <Link to= '/'>
       <IconButton aria-label="Return to Dashboard">
           <DashboardIcon />
       </IconButton>
+      </Link>
+      <Link to="/create-note">
+      <Button variant="contained">Add a new note</Button>
+      </Link>
+
     </div>
 
   );
