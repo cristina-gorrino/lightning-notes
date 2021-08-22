@@ -47,8 +47,8 @@ const resolvers = {
       return { token, user };
     },
 
-    addNote: async (parent, { title, text, noteAuthor }) => {
-      const note = await Note.create({ title, text, noteAuthor });
+    addNote: async (parent, { title, text, noteAuthor, category }) => {
+      const note = await Note.create({ title, text, noteAuthor, category });
       
     
       await User.findOneAndUpdate(

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { useParams } from 'react-router-dom';
 
 import { ADD_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
@@ -8,6 +9,14 @@ import { QUERY_NOTES } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 const CreatNoteForm = () => {
+  // Getting category ID from the hash passed in via URL
+  const tmp = window.location.hash;
+  const temp = tmp.split('#');
+  const categoryId = temp[1];
+  console.log(categoryId);
+
+  
+
   const [noteText, setNoteText] = useState("");
   // {
   //   title: "",

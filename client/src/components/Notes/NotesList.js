@@ -6,10 +6,12 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import { Link } from 'react-router-dom';
+
 import Auth from "../../utils/auth";
 
 
 const NotesList = ( ) => {
+
   const {categoryId} = useParams();
 
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {variables: { categoryId},});
@@ -50,7 +52,7 @@ const NotesList = ( ) => {
           <DashboardIcon />
       </IconButton>
       </Link>
-      <Link to="/create-note">
+      <Link to={{pathname: "/create-note", hash: `${categoryId}`}}>
       <Button variant="contained">Add a new note</Button>
       </Link>
 
