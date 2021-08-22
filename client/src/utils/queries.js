@@ -27,6 +27,15 @@ query notes ($username: String!) {
 }
 `;
 
+export const QUERY_CATEGORIES = gql`
+query categories {
+  categories{
+    _id
+    name
+  }
+}
+`;
+
 export const QUERY_SINGLE_NOTE = gql`
   query getSingleNote($noteId: ID!) {
     note(noteId: $noteId) {
