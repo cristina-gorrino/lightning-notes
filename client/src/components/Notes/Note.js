@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345
+    maxWidth: 345,
   },
   container: {
     display: 'flex',
@@ -34,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Note(props) {
   const classes = useStyles();
 
-  console.log(props)
- 
+  console.log(props);
 
   return (
     <Container style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', flex: '1 1 100px', margin: '20px'}}>
@@ -43,32 +42,35 @@ export default function Note(props) {
     <p style={{textAlign: 'center', fontSize: '9px', marginTop: '10px'}}>Created: {props.createdAt}</p>
       <CardHeader title= {props.title} style={{textAlign: 'center'}}/>
       <p style={{textAlign: 'left', marginLeft: '15px', marginRight: '15px'}}>{props.text}</p>
-      
+
       <form className={classes.container} noValidate>
-      <TextField
-        id="date"
-        label="Due Date"
-        type="date"
-        defaultValue="2017-05-24"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
-  
+        <TextField
+          id="date"
+          label="Due Date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </form>
+
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        ></Typography>
       </CardContent>
       <CardActions disableSpacing style={{justifyContent: 'center'}}>
         {/* <IconButton aria-label="save your note">
           <CheckIcon />
         </IconButton> */}
         <Link to={`/notes/${props.id}`}>
-        <IconButton aria-label="Update your note">
-          <UpdateIcon />
-        </IconButton>
+          <IconButton aria-label="Update your note">
+            <UpdateIcon />
+          </IconButton>
         </Link>
 
         <IconButton aria-label="mark as important">
@@ -76,10 +78,13 @@ export default function Note(props) {
         </IconButton>
         {/* <IconButton aria-label="Return to Dashboard">
           <DashboardIcon />
-        </IconButton> */}
-        <IconButton aria-label="delete your note">
-          <DeleteIcon />
+
         </IconButton>
+        <Link to={`/note-delete/${props.id}`}>
+          <IconButton aria-label="delete your note">
+            <DeleteIcon />
+          </IconButton>
+        </Link>
       </CardActions>
     </Card>
     </Container>
