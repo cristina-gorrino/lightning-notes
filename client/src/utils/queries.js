@@ -36,6 +36,15 @@ query categories {
 }
 `;
 
+export const QUERY_SINGLE_CATEGORY = gql`
+query category ($categoryId: ID!) {
+  category(_id:$cateoryID) {
+    _id
+    name
+  }
+}
+`;
+
 export const QUERY_SINGLE_NOTE = gql`
   query getSingleNote($noteId: ID!) {
     note(noteId: $noteId) {

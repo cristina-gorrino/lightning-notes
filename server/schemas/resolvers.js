@@ -14,6 +14,9 @@ const resolvers = {
     },
     categories: async (parent, args) => {
       return await Category.find({});
+    },
+    categories: async (parent, {categoryId}) => {
+      return await Category.find({_id: categoryId});
     }
     
   },
