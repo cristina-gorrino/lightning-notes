@@ -20,7 +20,7 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/me" style={{fontSize: '20px', margin: '25px', padding: '25px'}}>
+              <Link to="/" style={{fontSize: '20px', margin: '25px', padding: '25px'}}>
                 Welcome to Your Dashboard {Auth.getProfile().data.username}
               </Link>
               <button onClick={logout}>Logout</button>

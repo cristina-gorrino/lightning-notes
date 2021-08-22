@@ -49,7 +49,6 @@ const resolvers = {
 
     addNote: async (parent, { title, text, noteAuthor, category }) => {
       const note = await Note.create({ title, text, noteAuthor, category });
-      
     
       await User.findOneAndUpdate(
         { username: noteAuthor },

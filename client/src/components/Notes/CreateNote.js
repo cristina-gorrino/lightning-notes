@@ -20,7 +20,6 @@ const CreatNoteForm = () => {
   const categoryId = temp[1];
   console.log(categoryId);
 
-  
 
   const [noteText, setNoteText] = useState("");
   // {
@@ -64,6 +63,7 @@ const CreatNoteForm = () => {
           title: noteText.title,
           text: noteText.text,
           noteAuthor: Auth.getProfile().data.username,
+          category: categoryId
         },
       });
       console.log(data);
