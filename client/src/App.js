@@ -57,9 +57,9 @@ function App() {
         </Route>
         <Route exact path="/create-category">
           <CategoryForm />
-        </Route>
+        {/* </Route>
         <Route exact path="/note-list">
-          <NoteList />
+          <NoteList /> */}
         </Route>
         <Route exact path="/categories/:categoryId">
           <NoteList />
