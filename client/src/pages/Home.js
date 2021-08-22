@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React from "react";
 //import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -8,17 +8,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_CATEGORIES } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
-
-
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   },
-// }));
-
 const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
@@ -26,37 +15,6 @@ const buttonStyle = {
 }
 
 const Home = () => {
-
-  // eslint-disable-next-line no-unused-vars
-  const [ useCategory, updateCategory ] = useState ([
-
-    {
-      categoryName: "Home Task",
-      id: 1,
-      bgColor: {backgroundColor: '#DAF7A6'}
-    },
-    {
-      categoryName: "Work Task",
-      id: 2,
-      bgColor: {backgroundColor: '#FFC300'}
-    },
-    {
-      categoryName: "School Task",
-      id: 3,
-      bgColor: {backgroundColor: '#33E0FF'}
-    },
-    {
-      categoryName: "Shopping Task",
-      id: 4,
-      bgColor: {backgroundColor: '#D8A6DF'}
-    },
-    {
-      categoryName: "Other Task",
-      id: 5,
-      bgColor: {backgroundColor: '#F5CBA7'}
-    }
-  ]);
-  //const classes = useStyles();
 
   const { loading, data } = useQuery( QUERY_CATEGORIES);
   const categories = data?.categories || [];
@@ -111,10 +69,6 @@ const Home = () => {
               )
           )
         }
-        {/* {useCategory.map((category) => (
-
-          <Category name = { category.categoryName } key={category.id} bgColor={category.bgColor}/>
-        ))} */}
         </div>
         <div style={buttonStyle}>
           <Link to= '/create-category'>

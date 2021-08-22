@@ -14,12 +14,6 @@ export default function Category(props) {
       backgroundColor: "#33FF3F",
       ...props.bgColor
     },
-    // title: {
-    //   fontSize: '20px',
-    // },
-    // pos: {
-    //   marginBottom: 5,
-    // },
   });
 
   const classes = useStyles();
