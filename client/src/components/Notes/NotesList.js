@@ -4,40 +4,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useQuery } from '@apollo/client';
 import { QUERY_NOTES } from '../../utils/queries';
 import Auth from "../../utils/auth";
+import { Container } from "@material-ui/core";
 
-const noteCards = [
-  {
-    id: 1,
-    title: 'First note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 2,
-    title: 'Second note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 3,
-    title: 'Third note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 4,
-    title: 'Fourth note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 5,
-    title: 'Fifth note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-
-]
 
 const NotesList = ( ) => {
 
@@ -48,16 +16,9 @@ const NotesList = ( ) => {
   console.log(data)
 
   return (
+    <Container style={{ height: '100%', display: 'flex', flexWrap: 'wrap', margin: '20px'}}>
     <div className="notes-list">
-      {/* {noteCards.map((note) => (
-        <Note
-          key={note.id}
-          title={note.title}
-          text={note.text}
-          date={note.date}
-          
-        />
-      ))} */}
+      
                 {loading ? (
             <div>Loading...</div>
           ) : (
@@ -75,10 +36,11 @@ const NotesList = ( ) => {
             
           )}
       
-      <IconButton aria-label="Return to Dashboard">
-          <DashboardIcon />
+      <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+          <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
     </div>
+    </Container>
 
   );
 };

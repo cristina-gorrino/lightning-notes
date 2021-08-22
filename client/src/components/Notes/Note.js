@@ -8,19 +8,21 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import CheckIcon from "@material-ui/icons/Check";
+//import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
-import UpdateIcon from "@material-ui/icons/Update";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import TextField from "@material-ui/core/TextField";
+import UpdateIcon from '@material-ui/icons/Update';
+//import DashboardIcon from '@material-ui/icons/Dashboard';
+import TextField from '@material-ui/core/TextField';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
   container: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -35,10 +37,12 @@ export default function Note(props) {
   console.log(props);
 
   return (
-    <Card className={classes.root}>
-      <CardHeader title={props.title} />
-      <p>{props.text}</p>
-      <p>Created: {props.createdAt}</p>
+    <Container style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', flex: '1 1 100px', margin: '20px'}}>
+    <Card className={classes.root} style={{ margin: '5px', backgroundColor: '#F5ECAE' }}>
+    <p style={{textAlign: 'center', fontSize: '9px', marginTop: '10px'}}>Created: {props.createdAt}</p>
+      <CardHeader title= {props.title} style={{textAlign: 'center'}}/>
+      <p style={{textAlign: 'left', marginLeft: '15px', marginRight: '15px'}}>{props.text}</p>
+
       <form className={classes.container} noValidate>
         <TextField
           id="date"
@@ -59,10 +63,10 @@ export default function Note(props) {
           component="p"
         ></Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="save your note">
+      <CardActions disableSpacing style={{justifyContent: 'center'}}>
+        {/* <IconButton aria-label="save your note">
           <CheckIcon />
-        </IconButton>
+        </IconButton> */}
         <Link to={`/notes/${props.id}`}>
           <IconButton aria-label="Update your note">
             <UpdateIcon />
@@ -72,8 +76,9 @@ export default function Note(props) {
         <IconButton aria-label="mark as important">
           <StarBorderIcon />
         </IconButton>
-        <IconButton aria-label="Return to Dashboard">
+        {/* <IconButton aria-label="Return to Dashboard">
           <DashboardIcon />
+
         </IconButton>
         <Link to={`/note-delete/${props.id}`}>
           <IconButton aria-label="delete your note">
@@ -82,5 +87,6 @@ export default function Note(props) {
         </Link>
       </CardActions>
     </Card>
+    </Container>
   );
 }
