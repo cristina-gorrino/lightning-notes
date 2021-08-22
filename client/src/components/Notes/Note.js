@@ -19,6 +19,7 @@
 // export default Note;
 
 import React from "react";
+import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Note(props) {
   const classes = useStyles();
 
+  console.log(props)
  
 
   return (
@@ -79,9 +81,12 @@ export default function Note(props) {
         <IconButton aria-label="save your note">
           <CheckIcon />
         </IconButton>
+        <Link to={`/notes/${props.id}`}>
         <IconButton aria-label="Update your note">
           <UpdateIcon />
         </IconButton>
+        </Link>
+
         <IconButton aria-label="mark as important">
           <StarBorderIcon />
         </IconButton>
