@@ -55,7 +55,7 @@ const resolvers = {
       return category;
     },
 
-    removeNote: async (parent, { noteId }) => {
+    deleteNote: async (parent, { noteId }) => {
       return Note.findOneAndDelete({ _id: noteId });
     },
     editNote: async (parent, {noteId, title, text,}) => {
