@@ -32,7 +32,7 @@ const typeDefs = gql`
   type Query {
     user(username: String!): User
     notes(username: String!): [Note]
-    me: User
+    
   }
 
   type Mutation {
@@ -40,6 +40,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addNote(title: String!, text: String!, noteAuthor: String!): Note
     addCategory(name: String!): Category
+    removeNote(noteId: ID!): Note
+    editNote(noteId:ID! title: String!, text: String!): Note   
    }
 `;
 

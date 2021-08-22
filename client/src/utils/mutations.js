@@ -46,3 +46,16 @@ export const ADD_CATEGORY = gql`
     }
   }
 `;
+
+export const EDIT_NOTE = gql `
+mutation editNote( $noteId: ID!, $title: String!, $text: String!) {
+  editNote(noteId:$noteId, title:$title, text:$text ) {
+    _id
+    title
+    text
+    noteAuthor
+    createdAt
+    starred
+  }
+}
+`;

@@ -54,7 +54,23 @@ const resolvers = {
       const category = await Category.create({ name });
       return category;
     },
+
+    removeNote: async (parent, { noteId }) => {
+      return Note.findOneAndDelete({ _id: noteId });
+    },
+    editNote: async (parent, {noteId, title, text,}) => {
+      return Note.findByIdAndUpdate(
+        noteId, 
+        {
+          title: title,
+          text: text
+        },
+        {new:true}
+      );
+    }
   },
+
+
 
 
 };
