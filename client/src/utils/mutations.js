@@ -56,14 +56,18 @@ export const DELETE_NOTE = gql`
 `;
 
 export const EDIT_NOTE = gql`
-  mutation editNote($noteId: ID!, $title: String!, $text: String!) {
-    editNote(noteId: $noteId, title: $title, text: $text) {
+mutation editNote( $noteId: ID!, $title: String!, $text: String!, $category: ID) {
+  editNote(noteId:$noteId, title:$title, text:$text, category:$category ) {
+    _id
+    title
+    text
+    noteAuthor
+    createdAt
+    starred
+    category {
       _id
-      title
-      text
-      noteAuthor
-      createdAt
-      starred
+      name
     }
   }
+}
 `;

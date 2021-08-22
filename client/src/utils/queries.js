@@ -23,6 +23,25 @@ query notes ($username: String!) {
     text
     createdAt
     starred
+    category {
+      _id
+      name
+    }
+  }
+}
+`;
+export const NOTES_BY_CATEGORY = gql`
+query notesCat ($categoryId: ID!) {
+  notesCat (category:$categoryId){
+    _id
+    title
+    text
+    createdAt
+    starred
+    category {
+      _id
+      name
+    }
   }
 }
 `;

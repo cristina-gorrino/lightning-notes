@@ -32,6 +32,7 @@ const typeDefs = gql`
   type Query {
     user(username: String!): User
     notes(username: String!): [Note]
+    notesCat(category: ID!): [Note]
     categories : [Category]
     category(categoryId: ID!): Category
     
@@ -43,7 +44,7 @@ const typeDefs = gql`
     addNote(title: String!, text: String!, noteAuthor: String!): Note
     addCategory(name: String!): Category
     deleteNote(noteId: ID!): Note
-    editNote(noteId:ID! title: String!, text: String!): Note   
+    editNote(noteId:ID! title: String!, text: String!, category:ID): Note   
    }
 `;
 

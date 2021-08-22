@@ -9,19 +9,16 @@ import Auth from "../../utils/auth";
 
 const NotesList = ( ) => {
   const {categoryId} = useParams();
-  console.log(categoryId);
-  console.log(useQuery(QUERY_SINGLE_CATEGORY, {variables: {categoryId},}));
+
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {variables: { categoryId},});
   const { loading, data } = useQuery( QUERY_NOTES, {
     variables: {username: Auth.getProfile().data.username },
   });
   const notes = data?.notes || [];
   const category = categoryQuery.data?.category ||[];
-  console.log(category)
 
   return (
     <div className="notes-list">
-<<<<<<< HEAD
       {categoryQuery.loading ? (
         <div>Loading...</div>
       ) : (
@@ -30,9 +27,6 @@ const NotesList = ( ) => {
         </div>
 
       )}
-=======
-      
->>>>>>> 76549af0e3c6e9d11321b72e045ac3ccf7ebfc89
                 {loading ? (
             <div>Loading...</div>
           ) : (
