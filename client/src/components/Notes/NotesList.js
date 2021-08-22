@@ -6,60 +6,29 @@ import { useParams } from 'react-router-dom';
 import { QUERY_NOTES, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import Auth from "../../utils/auth";
 
-const noteCards = [
-  {
-    id: 1,
-    title: 'First note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 2,
-    title: 'Second note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 3,
-    title: 'Third note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 4,
-    title: 'Fourth note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-  {
-    id: 5,
-    title: 'Fifth note',
-    text: 'testing to post',
-    date: '08-21-2021'
-  },
-
-]
 
 const NotesList = ( ) => {
   const {categoryId} = useParams();
-  const {categoryLoading, categoryData} = useQuery(QUERY_SINGLE_CATEGORY, {variables: {_id: categoryId},});
+  console.log(categoryId);
+  console.log(useQuery(QUERY_SINGLE_CATEGORY, {variables: {categoryId},}));
+  const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {variables: { categoryId},});
   const { loading, data } = useQuery( QUERY_NOTES, {
     variables: {username: Auth.getProfile().data.username },
   });
   const notes = data?.notes || [];
-  console.log(data)
+  const category = categoryQuery.data?.category ||[];
+  console.log(category)
 
   return (
     <div className="notes-list">
-      {/* {noteCards.map((note) => (
-        <Note
-          key={note.id}
-          title={note.title}
-          text={note.text}
-          date={note.date}
-          
-        />
-      ))} */}
+      {categoryQuery.loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+        <h1>Category: {category.name}</h1>
+        </div>
+
+      )}
                 {loading ? (
             <div>Loading...</div>
           ) : (

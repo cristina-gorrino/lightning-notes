@@ -38,7 +38,7 @@ query categories {
 
 export const QUERY_SINGLE_CATEGORY = gql`
 query category ($categoryId: ID!) {
-  category(_id:$cateoryID) {
+  category(categoryId:$categoryId) {
     _id
     name
   }
