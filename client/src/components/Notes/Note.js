@@ -57,7 +57,7 @@ export default function Note(props) {
     <Card className={classes.root}>
       <CardHeader title= {props.title} />
       <p>{props.text}</p>
-      <p>{props.date}</p>
+      <p>Created: {props.createdAt}</p>
       <form className={classes.container} noValidate>
       <TextField
         id="date"
