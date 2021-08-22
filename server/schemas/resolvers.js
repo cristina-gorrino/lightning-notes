@@ -13,7 +13,6 @@ const resolvers = {
     },
     notesCat: async (parent, { category }) => {
       const params = category ? { category } : {};
-      console.log(category);
       return await Note.find({category: params.category}).populate('category').sort({ createdAt: -1 });
     },
     categories: async (parent, args) => {

@@ -3,7 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { QUERY_NOTES, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
+import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import Auth from "../../utils/auth";
 
 
@@ -11,10 +11,10 @@ const NotesList = ( ) => {
   const {categoryId} = useParams();
 
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {variables: { categoryId},});
-  const { loading, data } = useQuery( QUERY_NOTES, {
-    variables: {username: Auth.getProfile().data.username },
+  const { loading, data } = useQuery( NOTES_BY_CATEGORY, {
+    variables: {categoryId},
   });
-  const notes = data?.notes || [];
+  const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category ||[];
 
   return (
