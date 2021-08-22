@@ -17,6 +17,7 @@ import Home from "./pages/Home";
 import CreateNote from "./components/Notes/CreateNote";
 import CategoryForm from "./components/Notes/CategoryForm";
 import NoteList from './components/Notes/NotesList';
+import EditNote from './components/Notes/EditNote';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <Route exact path="/note-list">
           <NoteList />
+        </Route>
+        <Route exact path="/notes/:id">
+          <EditNote />
         </Route>
         <Footer />
       </Router>

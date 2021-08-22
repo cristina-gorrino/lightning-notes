@@ -64,7 +64,8 @@ const NotesList = ( ) => {
             
               notes.map((note) => 
               <Note
-              key={note.id}
+              key={note._id}
+              id={note._id}
               title={note.title}
               text={note.text}
               createdAt={note.createdAt}
