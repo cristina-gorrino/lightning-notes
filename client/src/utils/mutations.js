@@ -47,22 +47,22 @@ export const ADD_CATEGORY = gql`
 `;
 
 export const DELETE_NOTE = gql`
-  mutation removeNote($id: ID!) {
-    removeNote(id:$id) {
-      _id: $_id
+  mutation deleteNote($id: ID!) {
+    deleteNote(noteId: $noteId) {
+      _id: id
     }
   }
 `;
 
-export const EDIT_NOTE = gql `
-mutation editNote( $noteId: ID!, $title: String!, $text: String!) {
-  editNote(noteId:$noteId, title:$title, text:$text ) {
-    _id
-    title
-    text
-    noteAuthor
-    createdAt
-    starred
+export const EDIT_NOTE = gql`
+  mutation editNote($noteId: ID!, $title: String!, $text: String!) {
+    editNote(noteId: $noteId, title: $title, text: $text) {
+      _id
+      title
+      text
+      noteAuthor
+      createdAt
+      starred
+    }
   }
-}
 `;
