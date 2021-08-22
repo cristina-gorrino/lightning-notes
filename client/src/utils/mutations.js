@@ -42,7 +42,14 @@ export const ADD_CATEGORY = gql`
     addCategory(name: $name) {
       _id
       name
+    }
+  }
+`;
 
+export const DELETE_NOTE = gql`
+  mutation removeNote($id: ID!) {
+    removeNote(id:$id) {
+      _id: $_id
     }
   }
 `;
