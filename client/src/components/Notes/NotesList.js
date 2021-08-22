@@ -4,6 +4,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useQuery } from '@apollo/client';
 import { QUERY_NOTES } from '../../utils/queries';
 import Auth from "../../utils/auth";
+import { Container } from "@material-ui/core";
 
 
 const NotesList = ( ) => {
@@ -15,6 +16,7 @@ const NotesList = ( ) => {
   console.log(data)
 
   return (
+    <Container style={{ height: '100%', display: 'flex', flexWrap: 'wrap', margin: '20px'}}>
     <div className="notes-list">
       
                 {loading ? (
@@ -34,10 +36,11 @@ const NotesList = ( ) => {
             
           )}
       
-      <IconButton aria-label="Return to Dashboard">
-          <DashboardIcon />
+      <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+          <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
     </div>
+    </Container>
 
   );
 };

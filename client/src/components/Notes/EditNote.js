@@ -4,6 +4,11 @@ import { useMutation } from "@apollo/client";
 
 import { ADD_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
+import { Container } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import IconButton from "@material-ui/core/IconButton";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 import Auth from "../../utils/auth";
 
@@ -64,17 +69,20 @@ const EditNoteForm = () => {
     <div className="create-note">
       {Auth.loggedIn() ? (
         <>
+        <Container style={{alignItems: 'center'}}>
           <p
             className={`m-0 ${
               characterCount === 280 || error ? "text-danger" : ""
             }`}
+            style={{marginLeft: '200px', marginTop: '20px', paddingTop: '20px'}}
           >
             Character Count: {characterCount}/280
           </p>
-
+          {/* <Container style={{alignItems: 'center'}}> */}
+          <Card style={{maxWidth: 545, margin: '20px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title" style={{margin: '20px', paddingLeft: '25px',}}>Title</label>
               <input
                 type="text"
                 value={noteText.title}
@@ -82,10 +90,11 @@ const EditNoteForm = () => {
                 name="title"
                 required
                 onChange={onChangeInput}
+                style={{margin: '20px', padding: '10px', width: '70%'}}
               />
             </div>
             <div className="row">
-              <label htmlFor="content">Content</label>
+              <label htmlFor="content" style={{margin: '20px', paddingLeft: '25px'}}>Content</label>
               <textarea
                 type="text"
                 value={noteText.content}
@@ -96,10 +105,11 @@ const EditNoteForm = () => {
                 cols="10"
                 placeholder="Type to add a note..."
                 onChange={onChangeInput}
+                style={{margin: '10px', width: '66%'}}
               />
             </div>
             <div className="row">
-              <label htmlFor="createdAt">Date: {noteText.createdAt}</label>
+              <label htmlFor="createdAt" style={{margin: '20px', paddingLeft: '25px',}}>Date: {noteText.createdAt}</label>
               <input
                 type="date"
                 value={noteText.createdAt}
@@ -107,11 +117,20 @@ const EditNoteForm = () => {
                 name="createdAt"
                 required
                 onChange={onChangeInput}
+                style={{margin: '20px', padding: '10px'}}
               />
             </div>
-            <button type="submit">Save</button>
+            <button type="submit" style={{margin: '30px', marginLeft: '100px'}}>Save</button>
             {error && <div>{error.message}</div>}
+            <IconButton aria-label="mark as important">
+          <StarBorderIcon />
+        </IconButton>
+        <IconButton aria-label="Return to Dashboard">
+          <DashboardIcon />
+        </IconButton>
           </form>
+          </Card>
+          </Container>
         </>
       ) : (
         <p>
