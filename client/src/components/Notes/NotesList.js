@@ -21,6 +21,7 @@ const NotesList = ( ) => {
 
   return (
     <div className="notes-list">
+<<<<<<< HEAD
       {categoryQuery.loading ? (
         <div>Loading...</div>
       ) : (
@@ -29,6 +30,9 @@ const NotesList = ( ) => {
         </div>
 
       )}
+=======
+      
+>>>>>>> 76549af0e3c6e9d11321b72e045ac3ccf7ebfc89
                 {loading ? (
             <div>Loading...</div>
           ) : (
