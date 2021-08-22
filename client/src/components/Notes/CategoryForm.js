@@ -1,6 +1,22 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import { ADD_CATEGORY } from "../../utils/mutations";
 
 const CategoryForm = () => {
+  const [addCategory, { error }] = useMutation(ADD_CATEGORY);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await addCategory({
+        variables: { name: newCategory },
+      });
+
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const categories = [
     "Home Task",
     "Work task",
@@ -8,6 +24,7 @@ const CategoryForm = () => {
     "Shopping Task",
     "Other Task",
   ];
+
   const [newCategory, setNewCategory] = useState("");
   return (
     <form>
@@ -22,6 +39,9 @@ const CategoryForm = () => {
           </option>
         ))}
       </select>
+      <button type="button" onClick={handleFormSubmit}>
+        Add Category
+      </button>
     </form>
   );
 };
@@ -71,7 +91,7 @@ export default CategoryForm;
 //           <CheckIcon />
 //         </IconButton>
 //       </CardActions>
-      
+
 //     </div>
 //   );
 // }
