@@ -12,6 +12,9 @@ const resolvers = {
       return await Note.find({noteAuthor: params.username}).sort({ createdAt: -1 });
 
     },
+    categories: async (parent, args) => {
+      return await Category.find({});
+    }
     
   },
   Mutation: {

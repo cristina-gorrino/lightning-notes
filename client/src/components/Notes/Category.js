@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 
 
 export default function Category(props) {
+
   const useStyles = makeStyles({
     root: {
       minWidth: 275,
