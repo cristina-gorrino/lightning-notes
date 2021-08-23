@@ -13,10 +13,10 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import Auth from "../../utils/auth";
 
 const EditNoteForm = () => {
-  const [noteText, setNoteText] = useState("");
+
   const noteId = useParams().id;
 
-  const [characterCount, setCharacterCount] = useState(0);
+  //const [characterCount, setCharacterCount] = useState(0);
   const [updateNote, {error}] = useMutation(EDIT_NOTE);
   const { loading, data } = useQuery( QUERY_SINGLE_NOTE, {
     variables: {noteId},
@@ -24,6 +24,14 @@ const EditNoteForm = () => {
   console.log(data);
   const note = data?.note || [];
   console.log(note);
+
+  const [noteText, setNoteText] = useState(
+    {
+      title: note.title,
+      text: note.text,
+      createdAt: "",
+    }
+    );
 
   // const [addNote, { error }] = useMutation(ADD_NOTE, {
   //   update(cache, { data: { addNote } }) {
@@ -43,22 +51,28 @@ const EditNoteForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log(note._id);
+    console.log(noteText.title);
+    console.log(noteText.text);
+    console.log(Auth.getProfile().data.username);
+    console.log(note.category._id);
 
     //still in progress
     try {
       const { data } = await updateNote({
         variables: {
           // ...noteText,
-          id: note._id,
-          title: note.title,
-          text: note.text,
-          noteAuthor: Auth.getProfile().data.username,
+          noteId: note._id,
+          title: noteText.title,
+          text: noteText.text,
           category: note.category._id
         },
       });
+      console.log(data);
 
       setNoteText("");
     } catch (err) {
+      console.log(JSON.stringify(err, null, 2))
       console.error(err);
     }
   };
@@ -66,10 +80,12 @@ const EditNoteForm = () => {
   const onChangeInput = (e) => {
     const { name, value } = e.target;
 
-    if (name === "noteText" && value.length <= 280) {
-      setNoteText(value);
-      setCharacterCount(value.length);
-    }
+    setNoteText({
+      ...noteText,
+      [name]: value,
+    });
+
+
   };
 
   return (
@@ -85,14 +101,13 @@ const EditNoteForm = () => {
           >
             Character Count: {characterCount}/280
           </p> */}
-          {/* <Container style={{alignItems: 'center'}}> */}
           <Card style={{maxWidth: 545, margin: '20px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">
               <label htmlFor="title" style={{margin: '20px', paddingLeft: '25px',}}>Title</label>
               <input
                 type="text"
-                value={note.title}
+                value={noteText.title}
                 id="title"
                 name="title"
                 required
@@ -104,9 +119,9 @@ const EditNoteForm = () => {
               <label htmlFor="content" style={{margin: '20px', paddingLeft: '25px'}}>Content</label>
               <textarea
                 type="text"
-                value={note.text}
-                id="content"
-                name="content"
+                value={noteText.text}
+                id="text"
+                name="text"
                 required
                 rows="10"
                 cols="10"
@@ -119,7 +134,7 @@ const EditNoteForm = () => {
               <label htmlFor="createdAt" style={{margin: '20px', paddingLeft: '25px',}}>Date: {noteText.createdAt}</label>
               <input
                 type="date"
-                value={note.createdAt}
+                value={noteText.createdAt}
                 id="createdAt"
                 name="createdAt"
                 required

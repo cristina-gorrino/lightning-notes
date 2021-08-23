@@ -71,7 +71,11 @@ const resolvers = {
       return Note.findOneAndDelete({ _id: noteId });
     },
     editNote: async (parent, {noteId, title, text, category}) => {
-      return Note.findByIdAndUpdate(
+      console.log(noteId);
+      console.log(title);
+      console.log(text);
+      console.log(category);
+      const note = await Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
@@ -80,7 +84,9 @@ const resolvers = {
         },
         {new:true}
       ).populate('category');
+      return note;
     }
+    
   },
 
 
