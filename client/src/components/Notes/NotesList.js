@@ -4,15 +4,14 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import Button from '@material-ui/core/Button';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import { Link } from 'react-router-dom';
-
+import { NOTES_BY_CATEGORY, QUERY_SINGLE_CATEGORY } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import { Container } from "@material-ui/core";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
 const NotesList = ( ) => {
-
   const {categoryId} = useParams();
 
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {variables: { categoryId},});
@@ -22,10 +21,11 @@ const NotesList = ( ) => {
   const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category ||[];
 
+
   return (
     <Container style={{ height: '100%', display: 'flex', flexWrap: 'wrap', margin: '20px'}}>
     <div className="notes-list">
-      {categoryQuery.loading ? (
+    {categoryQuery.loading ? (
         <div>Loading...</div>
       ) : (
         <div>
@@ -33,6 +33,7 @@ const NotesList = ( ) => {
         </div>
 
       )}
+      
                 {loading ? (
             <div>Loading...</div>
           ) : (
@@ -49,15 +50,19 @@ const NotesList = ( ) => {
               
             
           )}
-      <Link to= '/'>
+      <Link to='/'>
       <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
           <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
       </Link>
+
       <Link to={{pathname: "/create-note", hash: `${categoryId}`}}>
-      <Button variant="contained">Add a new note</Button>
+      <IconButton aria-label="Add new Note" style={{marginLeft: '100px'}}>
+          <AddCircleOutlineIcon /><p style={{ marginLeft: '10px'}}>Create a new Note</p>
+      </IconButton>
       </Link>
 
+      
     </div>
     </Container>
 
