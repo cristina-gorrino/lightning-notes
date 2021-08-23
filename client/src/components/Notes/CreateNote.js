@@ -22,11 +22,6 @@ const CreatNoteForm = () => {
 
 
   const [noteText, setNoteText] = useState("");
-  // {
-  //   title: "",
-  //   text: "",
-  //   createdAt: "",
-  // }
 
   // const [characterCount, setCharacterCount] = useState(0);
 

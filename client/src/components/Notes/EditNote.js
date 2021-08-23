@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { EDIT_NOTE } from "../../utils/mutations";
@@ -16,22 +16,26 @@ const EditNoteForm = () => {
 
   const noteId = useParams().id;
 
-  //const [characterCount, setCharacterCount] = useState(0);
   const [updateNote, {error}] = useMutation(EDIT_NOTE);
   const { loading, data } = useQuery( QUERY_SINGLE_NOTE, {
     variables: {noteId},
   });
-  console.log(data);
   const note = data?.note || [];
   console.log(note);
 
   const [noteText, setNoteText] = useState(
     {
-      title: note.title,
-      text: note.text,
+      title: "",
+      text: "",
       createdAt: "",
     }
     );
+    useEffect(() => {
+      setNoteText({title: note.title, text:note.text});
+  }, [note]);
+  
+  
+    console.log(noteText);
 
   // const [addNote, { error }] = useMutation(ADD_NOTE, {
   //   update(cache, { data: { addNote } }) {
@@ -51,11 +55,9 @@ const EditNoteForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(note._id);
     console.log(noteText.title);
     console.log(noteText.text);
-    console.log(Auth.getProfile().data.username);
-    console.log(note.category._id);
+
 
     //still in progress
     try {
@@ -93,14 +95,6 @@ const EditNoteForm = () => {
       {Auth.loggedIn() ? (
         <>
         <Container style={{alignItems: 'center'}}>
-          {/* <p
-            // className={`m-0 ${
-            //   characterCount === 280 || error ? "text-danger" : ""
-            // }`}
-            style={{marginLeft: '200px', marginTop: '20px', paddingTop: '20px'}}
-          >
-            Character Count: {characterCount}/280
-          </p> */}
           <Card style={{maxWidth: 545, margin: '20px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">

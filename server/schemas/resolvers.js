@@ -71,10 +71,6 @@ const resolvers = {
       return Note.findOneAndDelete({ _id: noteId });
     },
     editNote: async (parent, {noteId, title, text, category}) => {
-      console.log(noteId);
-      console.log(title);
-      console.log(text);
-      console.log(category);
       const note = await Note.findByIdAndUpdate(
         noteId, 
         {
