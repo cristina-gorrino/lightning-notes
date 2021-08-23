@@ -18,8 +18,9 @@ const NotesList = ( ) => {
   const { loading, data } = useQuery( NOTES_BY_CATEGORY, {
     variables: {categoryId},
   });
-  const notes = data?.notes || [];
+  const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category ||[];
+
 
   return (
     <Container style={{ height: '100%', display: 'flex', flexWrap: 'wrap', margin: '20px'}}>
@@ -49,10 +50,12 @@ const NotesList = ( ) => {
               
             
           )}
-      
+      <Link to='/'>
       <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
           <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
+      </Link>
+
       <Link to={{pathname: "/create-note", hash: `${categoryId}`}}>
       <IconButton aria-label="Add new Note" style={{marginLeft: '100px'}}>
           <AddCircleOutlineIcon /><p style={{ marginLeft: '10px'}}>Create a new Note</p>
