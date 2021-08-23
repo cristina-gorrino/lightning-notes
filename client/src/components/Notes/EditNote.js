@@ -14,7 +14,7 @@ import Auth from "../../utils/auth";
 
 const EditNoteForm = () => {
   const [noteText, setNoteText] = useState("");
-  const {noteId} = useParams();
+  const noteId = useParams().id;
 
   const [characterCount, setCharacterCount] = useState(0);
   const [updateNote, {error}] = useMutation(EDIT_NOTE);
@@ -49,8 +49,11 @@ const EditNoteForm = () => {
       const { data } = await updateNote({
         variables: {
           // ...noteText,
-          noteText,
+          id: note._id,
+          title: note.title,
+          text: note.text,
           noteAuthor: Auth.getProfile().data.username,
+          category: note.category._id
         },
       });
 
@@ -74,14 +77,14 @@ const EditNoteForm = () => {
       {Auth.loggedIn() ? (
         <>
         <Container style={{alignItems: 'center'}}>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
+          {/* <p
+            // className={`m-0 ${
+            //   characterCount === 280 || error ? "text-danger" : ""
+            // }`}
             style={{marginLeft: '200px', marginTop: '20px', paddingTop: '20px'}}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
           {/* <Container style={{alignItems: 'center'}}> */}
           <Card style={{maxWidth: 545, margin: '20px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
@@ -89,7 +92,7 @@ const EditNoteForm = () => {
               <label htmlFor="title" style={{margin: '20px', paddingLeft: '25px',}}>Title</label>
               <input
                 type="text"
-                value={noteText.title}
+                value={note.title}
                 id="title"
                 name="title"
                 required
@@ -101,7 +104,7 @@ const EditNoteForm = () => {
               <label htmlFor="content" style={{margin: '20px', paddingLeft: '25px'}}>Content</label>
               <textarea
                 type="text"
-                value={noteText.content}
+                value={note.text}
                 id="content"
                 name="content"
                 required
@@ -116,7 +119,7 @@ const EditNoteForm = () => {
               <label htmlFor="createdAt" style={{margin: '20px', paddingLeft: '25px',}}>Date: {noteText.createdAt}</label>
               <input
                 type="date"
-                value={noteText.createdAt}
+                value={note.createdAt}
                 id="createdAt"
                 name="createdAt"
                 required
