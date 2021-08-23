@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_NOTES } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import { Container } from "@material-ui/core";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
 const NotesList = ( ) => {
@@ -39,6 +40,10 @@ const NotesList = ( ) => {
       <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
           <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
+      <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+          <AddCircleOutlineIcon /><p style={{ marginLeft: '10px'}}>Create a new Note</p>
+      </IconButton>
+      
     </div>
     </Container>
 
