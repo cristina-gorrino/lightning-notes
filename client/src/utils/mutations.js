@@ -25,14 +25,18 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_NOTE = gql`
-  mutation addNote($title: String!, $text: String!, $noteAuthor: String!) {
-    addNote(title: $title, text: $text, noteAuthor: $noteAuthor) {
+  mutation addNote($title: String!, $text: String!, $noteAuthor: String!, $category: ID) {
+    addNote(title: $title, text: $text, noteAuthor: $noteAuthor, category:$category) {
       _id
       title
       text
       noteAuthor
       createdAt
       starred
+      category {
+        _id
+        name
+      }
     }
   }
 `;
@@ -56,14 +60,18 @@ export const DELETE_NOTE = gql`
 `;
 
 export const EDIT_NOTE = gql`
-  mutation editNote($noteId: ID!, $title: String!, $text: String!) {
-    editNote(noteId: $noteId, title: $title, text: $text) {
+mutation editNote( $noteId: ID!, $title: String!, $text: String!, $category: ID) {
+  editNote(noteId:$noteId, title:$title, text:$text, category:$category ) {
+    _id
+    title
+    text
+    noteAuthor
+    createdAt
+    starred
+    category {
       _id
-      title
-      text
-      noteAuthor
-      createdAt
-      starred
+      name
     }
   }
+}
 `;

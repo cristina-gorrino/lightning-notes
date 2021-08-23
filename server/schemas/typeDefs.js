@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type Category {
     _id: ID
-    name: String!
+    name: String
   }
 
   type Auth {
@@ -32,17 +32,19 @@ const typeDefs = gql`
   type Query {
     user(username: String!): User
     notes(username: String!): [Note]
+    notesCat(category: ID!): [Note]
     categories : [Category]
+    category(categoryId: ID!): Category
     
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addNote(title: String!, text: String!, noteAuthor: String!): Note
+    addNote(title: String!, text: String!, noteAuthor: String!, category:ID): Note
     addCategory(name: String!): Category
     deleteNote(noteId: ID!): Note
-    editNote(noteId:ID! title: String!, text: String!): Note   
+    editNote(noteId:ID! title: String!, text: String!, category:ID): Note   
    }
 `;
 

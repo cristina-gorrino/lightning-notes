@@ -18,6 +18,7 @@ const Home = () => {
 
   const { loading, data } = useQuery( QUERY_CATEGORIES);
   const categories = data?.categories || [];
+  console.log(data);
 
   if (!categories.length) {
     return (
@@ -59,13 +60,15 @@ const Home = () => {
           ) : (
 
               categories.map((category) =>
-              <Category
-              key={category._id}
-              id={category._id}
-              name={category.name}
-              bgColor={chooseColor(category)}
-              
+              <Link to ={`/categories/${category._id}`}>
+                <Category
+                  key={category._id}
+                  id={category._id}
+                  name={category.name}
+                  bgColor={chooseColor(category)}
               />
+              </Link>
+
               )
           )
         }
