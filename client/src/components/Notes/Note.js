@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Note(props) {
   const classes = useStyles();
 
-  console.log(props);
 
   return (
     <Container style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', flex: '1 1 100px', margin: '20px'}}>
@@ -75,10 +74,6 @@ export default function Note(props) {
 
         <IconButton aria-label="mark as important">
           <StarBorderIcon />
-        </IconButton>
-        {/* <IconButton aria-label="Return to Dashboard">
-          <DashboardIcon />
-
         </IconButton>
         <Link to={`/note-delete/${props.id}`}>
           <IconButton aria-label="delete your note">
