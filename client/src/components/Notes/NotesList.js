@@ -2,6 +2,7 @@ import Note from "./Note";
 import IconButton from "@material-ui/core/IconButton";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { QUERY_NOTES } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import { Container } from "@material-ui/core";
@@ -40,9 +41,12 @@ const NotesList = ( ) => {
       <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
           <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
       </IconButton>
-      <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+      <Link>
+      <IconButton aria-label="Add new Note" style={{marginLeft: '100px'}}>
           <AddCircleOutlineIcon /><p style={{ marginLeft: '10px'}}>Create a new Note</p>
       </IconButton>
+      </Link>
+
       
     </div>
     </Container>
