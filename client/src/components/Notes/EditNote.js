@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-
-import { ADD_NOTE } from "../../utils/mutations";
-import { QUERY_NOTES } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { EDIT_NOTE } from "../../utils/mutations";
+import { QUERY_SINGLE_NOTE } from "../../utils/queries";
+import { useParams } from 'react-router-dom';
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,35 +14,39 @@ import Auth from "../../utils/auth";
 
 const EditNoteForm = () => {
   const [noteText, setNoteText] = useState("");
-  //   {
-  //     title: "",
-  //     content: "",
-  //     createdAt: "",
-  //   }
+  const {noteId} = useParams();
 
   const [characterCount, setCharacterCount] = useState(0);
-
-  const [addNote, { error }] = useMutation(ADD_NOTE, {
-    update(cache, { data: { addNote } }) {
-      try {
-        const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
-
-        cache.writeQuery({
-          query: QUERY_NOTES,
-          data: { notes: [addNote, ...notes] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-      
-    },
+  const [updateNote, {error}] = useMutation(EDIT_NOTE);
+  const { loading, data } = useQuery( QUERY_SINGLE_NOTE, {
+    variables: {noteId},
   });
+  console.log(data);
+  const note = data?.note || [];
+  console.log(note);
+
+  // const [addNote, { error }] = useMutation(ADD_NOTE, {
+  //   update(cache, { data: { addNote } }) {
+  //     try {
+  //       const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
+
+  //       cache.writeQuery({
+  //         query: QUERY_NOTES,
+  //         data: { notes: [addNote, ...notes] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+      
+  //   },
+  // });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    //still in progress
     try {
-      const { data } = await addNote({
+      const { data } = await updateNote({
         variables: {
           // ...noteText,
           noteText,
