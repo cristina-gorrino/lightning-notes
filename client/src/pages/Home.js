@@ -18,6 +18,7 @@ const Home = () => {
 
   const { loading, data } = useQuery( QUERY_CATEGORIES);
   const categories = data?.categories || [];
+  console.log(data);
 
   if (!categories.length) {
     return (
