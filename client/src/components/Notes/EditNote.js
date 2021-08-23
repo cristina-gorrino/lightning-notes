@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { EDIT_NOTE } from "../../utils/mutations";
 import { QUERY_SINGLE_NOTE } from "../../utils/queries";
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,7 +13,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import Auth from "../../utils/auth";
 
 const EditNoteForm = () => {
-
+  const history = useHistory();
   const noteId = useParams().id;
 
   const [updateNote, {error}] = useMutation(EDIT_NOTE);
@@ -73,6 +73,9 @@ const EditNoteForm = () => {
       console.log(data);
 
       setNoteText("");
+
+      history.push(`/categories/${note.category._id}`);
+      window.location.reload();
     } catch (err) {
       console.log(JSON.stringify(err, null, 2))
       console.error(err);
