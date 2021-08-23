@@ -68,7 +68,9 @@ const resolvers = {
 
     deleteNote: async (parent, { noteId }) => {
       console.log(noteId);
-      return Note.findOneAndDelete({ _id: noteId });
+
+      const note = await Note.findOneAndDelete({ _id: noteId });
+      return note;
     },
     editNote: async (parent, { noteId, title, text, category }) => {
       return Note.findByIdAndUpdate(
