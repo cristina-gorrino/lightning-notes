@@ -14,18 +14,12 @@ export default function Category(props) {
       backgroundColor: "#33FF3F",
       ...props.bgColor
     },
-    // title: {
-    //   fontSize: '20px',
-    // },
-    // pos: {
-    //   marginBottom: 5,
-    // },
   });
 
   const classes = useStyles();
 
   return (
-    <Container style={{ width: '100%', display: 'block'}}>
+    <Container style={{ width: '100%', display: 'block', marginTop: '25px'}}>
     <Card className={classes.root} style={{marginBottom: '10px'}}>
       <CardContent>
         <Typography variant="h5" component="h2">

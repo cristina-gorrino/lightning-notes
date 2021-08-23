@@ -9,11 +9,17 @@ const resolvers = {
     },
     notes: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return await Note.find({noteAuthor: params.username}).sort({ createdAt: -1 });
-
+      return await Note.find({noteAuthor: params.username}).populate('category').sort({ createdAt: -1 });
+    },
+    notesCat: async (parent, { category }) => {
+      const params = category ? { category } : {};
+      return await Note.find({category: params.category}).populate('category').sort({ createdAt: -1 });
     },
     categories: async (parent, args) => {
       return await Category.find({});
+    },
+    category: async (parent, {categoryId}) => {
+      return await Category.findOne({_id: categoryId});
     }
     
   },
@@ -41,9 +47,8 @@ const resolvers = {
       return { token, user };
     },
 
-    addNote: async (parent, { title, text, noteAuthor }) => {
-      const note = await Note.create({ title, text, noteAuthor });
-      
+    addNote: async (parent, { title, text, noteAuthor, category }) => {
+      const note = await Note.create({ title, text, noteAuthor, category });
     
       await User.findOneAndUpdate(
         { username: noteAuthor },
@@ -61,15 +66,16 @@ const resolvers = {
     deleteNote: async (parent, { noteId }) => {
       return Note.findOneAndDelete({ _id: noteId });
     },
-    editNote: async (parent, {noteId, title, text,}) => {
+    editNote: async (parent, {noteId, title, text, category}) => {
       return Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
-          text: text
+          text: text,
+          category: category,
         },
         {new:true}
-      );
+      ).populate('category');
     }
   },
 

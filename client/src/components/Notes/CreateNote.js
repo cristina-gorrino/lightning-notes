@@ -1,13 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { useParams } from 'react-router-dom';
 
 import { ADD_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
+import { Container } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import IconButton from "@material-ui/core/IconButton";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const CreatNoteForm = () => {
+  // Getting category ID from the hash passed in via URL
+  const tmp = window.location.hash;
+  const temp = tmp.split('#');
+  const categoryId = temp[1];
+  console.log(categoryId);
+
+
   const [noteText, setNoteText] = useState("");
   // {
   //   title: "",
@@ -50,6 +63,7 @@ const CreatNoteForm = () => {
           title: noteText.title,
           text: noteText.text,
           noteAuthor: Auth.getProfile().data.username,
+          category: categoryId
         },
       });
       console.log(data);
@@ -80,17 +94,12 @@ const CreatNoteForm = () => {
     <div className="create-note">
       {Auth.loggedIn() ? (
         <>
-          {/* <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p> */}
 
+          <Container style={{alignItems: 'center'}}>
+          <Card style={{maxWidth: 545, margin: '50px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title" style={{margin: '20px', paddingLeft: '25px',}}>Title</label>
               <input
                 type="text"
                 value={noteText.title}
@@ -98,10 +107,11 @@ const CreatNoteForm = () => {
                 name="title"
                 required
                 onChange={onChangeInput}
+                style={{margin: '20px', padding: '10px', width: '70%'}}
               />
             </div>
             <div className="row">
-              <label htmlFor="text">Content</label>
+              <label htmlFor="text" style={{margin: '20px', paddingLeft: '25px'}}>Content</label>
               <textarea
                 type="text"
                 value={noteText.text}
@@ -112,10 +122,11 @@ const CreatNoteForm = () => {
                 cols="10"
                 placeholder="Type to add a note..."
                 onChange={onChangeInput}
+                style={{margin: '10px', width: '66%'}}
               />
             </div>
             <div className="row">
-              <label htmlFor="createdAt">Date: {noteText.createdAt}</label>
+              <label htmlFor="createdAt" style={{margin: '20px', paddingLeft: '25px',}}>Date: {noteText.createdAt}</label>
               <input
                 type="date"
                 value={noteText.createdAt}
@@ -123,11 +134,21 @@ const CreatNoteForm = () => {
                 name="createdAt"
                 required
                 onChange={onChangeInput}
+                style={{margin: '20px', padding: '10px'}}
               />
             </div>
-            <button type="submit">Save</button>
+            <button type="submit" style={{margin: '30px', marginLeft: '100px'}}>Save</button>
             {error && <div>{error.message}</div>}
+            <IconButton aria-label="mark as important">
+          <StarBorderIcon />
+        </IconButton>
+        <IconButton aria-label="Return to Dashboard">
+          <DashboardIcon />
+        </IconButton>
           </form>
+          
+          </Card>
+          </Container>
         </>
       ) : (
         <p>
