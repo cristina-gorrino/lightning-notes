@@ -19,9 +19,7 @@ const resolvers = {
     },
     notesCat: async (parent, { category }) => {
       const params = category ? { category } : {};
-      return await Note.find({ category: params.category })
-        .populate("category")
-        .sort({ createdAt: -1 });
+      return await Note.find({category: params.category}).populate('category').sort({ starred: -1, createdAt: -1 });
     },
     categories: async (parent, args) => {
       return await Category.find({});
@@ -76,14 +74,14 @@ const resolvers = {
       const note = await Note.findOneAndDelete({ _id: noteId });
       return note;
     },
-
-    editNote: async (parent, {noteId, title, text, category}) => {
+    editNote: async (parent, {noteId, title, text, category, starred}) => {
       const note = await Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
           text: text,
           category: category,
+          starred: starred,
         },
         {new:true}
       ).populate('category');
