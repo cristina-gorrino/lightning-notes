@@ -14,20 +14,35 @@ const Header = () => {
       <div className="container">
         <div>
           <Link to="/">
-            <h1><FlashOnIcon />Lightning Notes<FlashOnIcon /></h1>
+            <h1>
+              <FlashOnIcon />
+              Lightning Notes
+              <FlashOnIcon />
+            </h1>
           </Link>
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/" style={{fontSize: '20px', margin: '25px', padding: '25px'}}>
-                Welcome to Your Dashboard {Auth.getProfile().data.username}
+              <Link to="/" style={{ fontSize: "18px", margin: "10px" }}>
+                {Auth.getProfile().data.username}'s Dashboard
               </Link>
-              <button onClick={logout}>Logout</button>
+              <button onClick={logout} style={{ fontSize: "14px" }}>
+                Logout
+              </button>
             </>
           ) : (
             <>
-              <Link style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '15px'}} to="/login">Login</Link>
+              <Link
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginBottom: "15px",
+                }}
+                to="/login"
+              >
+                Login
+              </Link>
               {/* <Link to="/signup">Signup</Link> */}
             </>
           )}

@@ -1,11 +1,13 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { DELETE_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
 
 const DeleteNote = () => {
+  const history = useHistory();
   const noteId = useParams().id;
   console.log(noteId);
   const [deleteNote] = useMutation(DELETE_NOTE, {
@@ -22,22 +24,27 @@ const DeleteNote = () => {
     e.preventDefault();
     console.log(e);
     try {
-      console.log("something");
       const { data } = await deleteNote({
         variables: {
           noteId: noteId,
         },
       });
-      console.log(data);
-      console.log("Hi");
+
+      history.push(`/`);
+      window.location.reload();
     } catch (err) {
-      console.log(JSON.stringify(err, null, 2));
       console.error(err);
-      console.log("by");
     }
   };
 
-  return <button onClick={deleteNoteHandler}>Delete</button>;
+  return (
+    <div>
+      <button onClick={deleteNoteHandler}>Delete</button>
+      <Link to="/" exact>
+        <button>Cancel</button>
+      </Link>
+    </div>
+  );
 };
 
 export default DeleteNote;
