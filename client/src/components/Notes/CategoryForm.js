@@ -29,6 +29,10 @@ const CategoryForm = () => {
     "Shopping Task",
     "Other Task",
   ];
+  
+  return (
+    <div className="create-note">
+      {Auth.loggedIn() ? (
 
   const [newCategory, setNewCategory] = useState("");
   return (
@@ -59,6 +63,13 @@ const CategoryForm = () => {
         ""
       )}
     </form>
+    
+    <p>
+          You need to be logged in to use lightning notes. Please{" "}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+        )}
+    </div> 
   );
 };
 
