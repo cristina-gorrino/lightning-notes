@@ -10,12 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
-<<<<<<< HEAD
 import StarNote from './StarNote'
 import UpdateIcon from '@material-ui/icons/Update';
-=======
-import UpdateIcon from "@material-ui/icons/Update";
->>>>>>> 7f58a72cfb9993e5853b10a8ace6a5bcd49741c2
 //import DashboardIcon from '@material-ui/icons/Dashboard';
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
@@ -49,7 +45,7 @@ export default function Note(props) {
         margin: "20px",
       }}
     >
-      <Card
+      <CardContent
         className={classes.root}
         style={{ margin: "5px", backgroundColor: "#F5ECAE" }}
       >
@@ -86,31 +82,27 @@ export default function Note(props) {
         <CardActions disableSpacing style={{ justifyContent: "center" }}>
           {/* <IconButton aria-label="save your note">
           <CheckIcon />
-        </IconButton> */}
+          </IconButton> */}
           <Link to={`/notes/${props.id}`}>
             <IconButton aria-label="Update your note">
               <UpdateIcon />
             </IconButton>
           </Link>
 
-<<<<<<< HEAD
 
-        <StarNote noteId={props.id}/>
-        <Link to={`/note-delete/${props.id}`}>
-          <IconButton aria-label="delete your note">
-            <DeleteIcon />
-=======
-          <IconButton aria-label="mark as important">
-            <StarBorderIcon />
->>>>>>> 7f58a72cfb9993e5853b10a8ace6a5bcd49741c2
-          </IconButton>
+          <StarNote noteId={props.id}/>
+          <Link to={`/note-delete/${props.id}`}>
+            <IconButton aria-label="delete your note">
+              <DeleteIcon />
+            </IconButton>
+          </Link>
           <Link to={`/note-delete/${props.id}`}>
             <IconButton aria-label="delete your note">
               <DeleteIcon />
             </IconButton>
           </Link>
         </CardActions>
-      </Card>
-    </Container>
+        </CardContent>
+      </Container>
   );
 }
