@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 import { DELETE_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
-import { Link } from "react-router-dom";
 
 const DeleteNote = () => {
   const history = useHistory();

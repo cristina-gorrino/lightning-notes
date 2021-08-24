@@ -41,7 +41,6 @@ const NotesList = () => {
                 <h1>Category: {category.name}</h1>
               </div>
             )}
-            )}
             {loading ? (
               <div>Loading...</div>
             ) : (
