@@ -31,6 +31,7 @@ const typeDefs = gql`
 
   type Query {
     user(username: String!): User
+    note(noteId: ID!): Note
     notes(username: String!): [Note]
     notesCat(category: ID!): [Note]
     categories : [Category]
