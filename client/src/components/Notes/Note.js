@@ -8,10 +8,8 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-//import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from '@material-ui/icons/Update';
-//import DashboardIcon from '@material-ui/icons/Dashboard';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 
@@ -63,9 +61,6 @@ export default function Note(props) {
         ></Typography>
       </CardContent>
       <CardActions disableSpacing style={{justifyContent: 'center'}}>
-        {/* <IconButton aria-label="save your note">
-          <CheckIcon />
-        </IconButton> */}
         <Link to={`/notes/${props.id}`}>
           <IconButton aria-label="Update your note">
             <UpdateIcon />

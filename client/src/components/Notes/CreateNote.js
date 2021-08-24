@@ -24,7 +24,6 @@ const CreatNoteForm = () => {
 
   const [noteText, setNoteText] = useState("");
 
-  // const [characterCount, setCharacterCount] = useState(0);
 
   const [addNote, { error }] = useMutation(ADD_NOTE, {
     update(cache, { data: { addNote } }) {
@@ -55,7 +54,6 @@ const CreatNoteForm = () => {
     try {
       const { data } = await addNote({
         variables: {
-          // ...noteText,
           title: noteText.title,
           text: noteText.text,
           noteAuthor: Auth.getProfile().data.username,

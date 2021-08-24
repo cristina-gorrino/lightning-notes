@@ -28,7 +28,6 @@ const Header = () => {
           ) : (
             <>
               <Link style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '15px'}} to="/login">Login</Link>
-              {/* <Link to="/signup">Signup</Link> */}
             </>
           )}
         </div>

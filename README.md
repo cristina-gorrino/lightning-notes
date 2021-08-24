@@ -63,13 +63,12 @@ Creating a note
 <img width="668" alt="Screen Shot 2021-08-22 at 4 50 54 PM" src="https://user-images.githubusercontent.com/79430431/130377347-9b4af623-6b62-4caf-a3a9-9e4e3bae6c97.png">
 
 List of note under a Category
-<img width="880" alt="Screen Shot 2021-08-22 at 1 41 19 PM" src="https://user-images.githubusercontent.com/79430431/130377368-edad5a01-a5e9-4263-91b3-83e87e6cfc78.png">
+<img width="1144" alt="Screen Shot 2021-08-23 at 9 35 58 PM" src="https://user-images.githubusercontent.com/79430431/130556526-35d66c71-c870-4929-aa6f-452203ab77cc.png">
 
 
 ## Important Links 
 
-[GitHub Repository Link](https://github.com/cristina-gorrino/lightning-notes
-)
+[GitHub Repository Link](https://github.com/cristina-gorrino/lightning-notes)
 [Link to GitHub deployed Webpage]()
 
 ## Framework/Technolgies
