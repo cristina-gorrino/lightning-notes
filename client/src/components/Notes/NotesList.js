@@ -38,7 +38,7 @@ const NotesList = () => {
               <div>Loading...</div>
             ) : (
               <div>
-                <h1>Category: {category.name}</h1>
+                <h1 >Category: {category.name}</h1>
               </div>
             )}
             {loading ? (
