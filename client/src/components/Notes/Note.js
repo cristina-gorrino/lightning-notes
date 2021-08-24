@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
+import StarNote from './StarNote'
 import UpdateIcon from '@material-ui/icons/Update';
 //import DashboardIcon from '@material-ui/icons/Dashboard';
 import TextField from '@material-ui/core/TextField';
@@ -72,9 +73,8 @@ export default function Note(props) {
           </IconButton>
         </Link>
 
-        <IconButton aria-label="mark as important">
-          <StarBorderIcon />
-        </IconButton>
+
+        <StarNote noteId={props.id}/>
         <Link to={`/note-delete/${props.id}`}>
           <IconButton aria-label="delete your note">
             <DeleteIcon />

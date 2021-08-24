@@ -10,7 +10,6 @@ import Auth from "../../utils/auth";
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const CreatNoteForm = () => {
@@ -131,12 +130,12 @@ const CreatNoteForm = () => {
             </div>
             <button type="submit" style={{margin: '30px', marginLeft: '100px'}}>Save</button>
             {error && <div>{error.message}</div>}
-            <IconButton aria-label="mark as important">
-          <StarBorderIcon />
-        </IconButton>
-        <IconButton aria-label="Return to Dashboard">
+            <Link to='/'>
+            <IconButton aria-label="Return to Dashboard">
           <DashboardIcon />
         </IconButton>
+            </Link>
+
           </form>
           
           </Card>
