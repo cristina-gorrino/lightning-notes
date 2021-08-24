@@ -45,7 +45,7 @@ const typeDefs = gql`
     addNote(title: String!, text: String!, noteAuthor: String!, category:ID): Note
     addCategory(name: String!): Category
     deleteNote(noteId: ID!): Note
-    editNote(noteId:ID! title: String!, text: String!, category:ID): Note   
+    editNote(noteId:ID! title: String!, text: String!, category:ID, starred:Boolean): Note   
    }
 `;
 

@@ -10,8 +10,7 @@ import Auth from "../../utils/auth";
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const CreatNoteForm = () => {
   // Getting category ID from the hash passed in via URL
@@ -88,7 +87,6 @@ const CreatNoteForm = () => {
   return (
     <div className="create-note">
       {Auth.loggedIn() ? (
-        <>
           <Container style={{ alignItems: "center" }}>
             <Card
               style={{
@@ -163,9 +161,6 @@ const CreatNoteForm = () => {
                   Save
                 </button>
                 {error && <div>{error.message}</div>}
-                <IconButton aria-label="mark as important">
-                  <StarBorderIcon />
-                </IconButton>
                 <Link to="/">
                   <IconButton
                     aria-label="Return to Dashboard"
@@ -178,7 +173,7 @@ const CreatNoteForm = () => {
               </form>
             </Card>
           </Container>
-        </>
+
       ) : (
         <p>
           You need to be logged in to use lightning notes. Please{" "}
