@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { ADD_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
@@ -20,13 +20,9 @@ const CreatNoteForm = () => {
   const categoryId = temp[1];
   console.log(categoryId);
 
+  const history = useHistory();
 
   const [noteText, setNoteText] = useState("");
-  // {
-  //   title: "",
-  //   text: "",
-  //   createdAt: "",
-  // }
 
   // const [characterCount, setCharacterCount] = useState(0);
 
@@ -69,19 +65,15 @@ const CreatNoteForm = () => {
       console.log(data);
 
       setNoteText("");
+
+      history.push(`/categories/${categoryId}`);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
   };
 
   const onChangeInput = (e) => {
-    // const { name, value } = e.target;
-    // // && value.length <= 280
-    // console.log(name);
-    // if (name === "noteText" && value.length <= 280) {
-    //   setNoteText(value);
-    //   setCharacterCount(value.length);
-    // }
     const { name, value } = e.target;
 
     setNoteText({

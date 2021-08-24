@@ -65,12 +65,17 @@ query category ($categoryId: ID!) {
 `;
 
 export const QUERY_SINGLE_NOTE = gql`
-  query getSingleNote($noteId: ID!) {
+  query note($noteId: ID!) {
     note(noteId: $noteId) {
       _id
+      title
       text
-      noteAuthor
       createdAt
+      starred
+      category {
+        _id
+        name
+      }
     }
   }
 `;

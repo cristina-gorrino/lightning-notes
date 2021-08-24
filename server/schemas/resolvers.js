@@ -7,6 +7,10 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('notes');
     },
+    note: async (parent, { noteId }) => {
+      const params = noteId ? { noteId } : {};
+      return await Note.findOne({_id: params.noteId}).populate('category').sort({ createdAt: -1 });
+    },
     notes: async (parent, { username }) => {
       const params = username ? { username } : {};
       return await Note.find({noteAuthor: params.username}).populate('category').sort({ createdAt: -1 });
@@ -67,7 +71,7 @@ const resolvers = {
       return Note.findOneAndDelete({ _id: noteId });
     },
     editNote: async (parent, {noteId, title, text, category}) => {
-      return Note.findByIdAndUpdate(
+      const note = await Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
@@ -76,7 +80,9 @@ const resolvers = {
         },
         {new:true}
       ).populate('category');
+      return note;
     }
+    
   },
 
 

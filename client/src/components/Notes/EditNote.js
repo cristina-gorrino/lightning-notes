@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-
-import { ADD_NOTE } from "../../utils/mutations";
-import { QUERY_NOTES } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { EDIT_NOTE } from "../../utils/mutations";
+import { QUERY_SINGLE_NOTE } from "../../utils/queries";
+import { useHistory, useParams } from 'react-router-dom';
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,45 +13,71 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import Auth from "../../utils/auth";
 
 const EditNoteForm = () => {
-  const [noteText, setNoteText] = useState("");
-  //   {
-  //     title: "",
-  //     content: "",
-  //     createdAt: "",
-  //   }
+  const history = useHistory();
+  const noteId = useParams().id;
 
-  const [characterCount, setCharacterCount] = useState(0);
-
-  const [addNote, { error }] = useMutation(ADD_NOTE, {
-    update(cache, { data: { addNote } }) {
-      try {
-        const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
-
-        cache.writeQuery({
-          query: QUERY_NOTES,
-          data: { notes: [addNote, ...notes] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-      
-    },
+  const [updateNote, {error}] = useMutation(EDIT_NOTE);
+  const { loading, data } = useQuery( QUERY_SINGLE_NOTE, {
+    variables: {noteId},
   });
+  const note = data?.note || [];
+  console.log(note);
+
+  const [noteText, setNoteText] = useState(
+    {
+      title: "",
+      text: "",
+      createdAt: "",
+    }
+    );
+    useEffect(() => {
+      setNoteText({title: note.title, text:note.text});
+  }, [note]);
+  
+  
+    console.log(noteText);
+
+  // const [addNote, { error }] = useMutation(ADD_NOTE, {
+  //   update(cache, { data: { addNote } }) {
+  //     try {
+  //       const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
+
+  //       cache.writeQuery({
+  //         query: QUERY_NOTES,
+  //         data: { notes: [addNote, ...notes] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+      
+  //   },
+  // });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log(noteText.title);
+    console.log(noteText.text);
 
+
+    //still in progress
     try {
-      const { data } = await addNote({
+      const { data } = await updateNote({
         variables: {
           // ...noteText,
-          noteText,
-          noteAuthor: Auth.getProfile().data.username,
+          noteId: note._id,
+          title: noteText.title,
+          text: noteText.text,
+          category: note.category._id
         },
       });
+      console.log(data);
 
       setNoteText("");
+
+      history.push(`/categories/${note.category._id}`);
+      window.location.reload();
     } catch (err) {
+      console.log(JSON.stringify(err, null, 2))
       console.error(err);
     }
   };
@@ -59,10 +85,12 @@ const EditNoteForm = () => {
   const onChangeInput = (e) => {
     const { name, value } = e.target;
 
-    if (name === "noteText" && value.length <= 280) {
-      setNoteText(value);
-      setCharacterCount(value.length);
-    }
+    setNoteText({
+      ...noteText,
+      [name]: value,
+    });
+
+
   };
 
   return (
@@ -70,15 +98,6 @@ const EditNoteForm = () => {
       {Auth.loggedIn() ? (
         <>
         <Container style={{alignItems: 'center'}}>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
-            style={{marginLeft: '200px', marginTop: '20px', paddingTop: '20px'}}
-          >
-            Character Count: {characterCount}/280
-          </p>
-          {/* <Container style={{alignItems: 'center'}}> */}
           <Card style={{maxWidth: 545, margin: '20px', backgroundColor: '#F5ECAE'}}>
           <form onSubmit={handleFormSubmit} autoComplete="off">
             <div className="row">
@@ -97,9 +116,9 @@ const EditNoteForm = () => {
               <label htmlFor="content" style={{margin: '20px', paddingLeft: '25px'}}>Content</label>
               <textarea
                 type="text"
-                value={noteText.content}
-                id="content"
-                name="content"
+                value={noteText.text}
+                id="text"
+                name="text"
                 required
                 rows="10"
                 cols="10"
