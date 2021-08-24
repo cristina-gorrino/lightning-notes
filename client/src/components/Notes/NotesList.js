@@ -37,8 +37,8 @@ const NotesList = ( ) => {
                 {loading ? (
             <div>Loading...</div>
           ) : (
-            
-              notes.map((note) => 
+            <div style={{display: 'flex', flexWrap: 'wrap'}}>
+              {notes.map((note) => 
               <Note
               key={note._id}
               id={note._id}
@@ -46,8 +46,9 @@ const NotesList = ( ) => {
               text={note.text}
               createdAt={note.createdAt}
               />
-              ) 
-              
+              )
+              }    
+            </div>  
             
           )}
       <Link to='/'>

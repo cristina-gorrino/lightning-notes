@@ -2,6 +2,10 @@ import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { ADD_CATEGORY } from "../../utils/mutations";
 import { useHistory } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import { Link } from 'react-router-dom';
+import { Container } from "@material-ui/core";
 
 const CategoryForm = () => {
   const history = useHistory();
@@ -31,6 +35,7 @@ const CategoryForm = () => {
 
   const [newCategory, setNewCategory] = useState("");
   return (
+    <Container>
     <form>
       <select
         onChange={(e) => setNewCategory(e.target.value)}
@@ -47,6 +52,12 @@ const CategoryForm = () => {
         Add Category
       </button>
     </form>
+    <Link to='/'>
+    <IconButton aria-label="Return to Dashboard" style={{marginLeft: '100px'}}>
+        <DashboardIcon /><p style={{ marginLeft: '10px'}}>Go Back to Dashboard</p>
+    </IconButton>
+    </Link>
+    </Container>
   );
 };
 
