@@ -59,7 +59,7 @@ function App() {
         </Route>
         <Route exact path="/create-category">
           <CategoryForm />
-        {/* </Route>
+          {/* </Route>
         <Route exact path="/note-list">
           <NoteList /> */}
         </Route>
