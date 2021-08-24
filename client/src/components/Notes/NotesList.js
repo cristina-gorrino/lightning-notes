@@ -41,19 +41,21 @@ const NotesList = () => {
                 <h1>Category: {category.name}</h1>
               </div>
             )}
-
+            )}
             {loading ? (
               <div>Loading...</div>
             ) : (
-              notes.map((note) => (
-                <Note
-                  key={note._id}
-                  id={note._id}
-                  title={note.title}
-                  text={note.text}
-                  createdAt={note.createdAt}
-                />
-              ))
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
+                {notes.map((note) => (
+                  <Note
+                    key={note._id}
+                    id={note._id}
+                    title={note.title}
+                    text={note.text}
+                    createdAt={note.createdAt}
+                  />
+                ))}
+              </div>
             )}
             <Link to="/">
               <IconButton
@@ -64,7 +66,6 @@ const NotesList = () => {
                 <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
               </IconButton>
             </Link>
-
             <Link to={{ pathname: "/create-note", hash: `${categoryId}` }}>
               <IconButton
                 aria-label="Add new Note"

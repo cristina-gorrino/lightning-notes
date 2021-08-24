@@ -1,44 +1,49 @@
 import React from "react";
-import { Mutation } from "react-apollo";
-import Auth from "../../utils/auth";
+import { useMutation } from "@apollo/client";
+import { Link, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import { DELETE_NOTE } from "../../utils/mutations";
 import { QUERY_NOTES } from "../../utils/queries";
 import { Link } from "react-router-dom";
 
-const DeleteNote = ({ id }) => {
+const DeleteNote = () => {
+  const history = useHistory();
+  const noteId = useParams().id;
+  console.log(noteId);
+  const [deleteNote] = useMutation(DELETE_NOTE, {
+    update(cache, { data: { deleteNote } }) {
+      const { notes = [] } = cache.readQuery({ query: QUERY_NOTES }) || {};
+      cache.writeQuery({
+        query: QUERY_NOTES,
+        data: { notes: notes.filter((e) => e.id !== noteId) },
+      });
+    },
+  });
+
+  const deleteNoteHandler = async (e) => {
+    e.preventDefault();
+    console.log(e);
+    try {
+      const { data } = await deleteNote({
+        variables: {
+          noteId: noteId,
+        },
+      });
+
+      history.push(`/`);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="create-note">
-      {Auth.loggedIn() ? (
-        <Mutation
-          mutation={DELETE_NOTE}
-          update={(cache, { data: { deleteNote } }) => {
-            const { notes } = cache.readQuery({ query: QUERY_NOTES });
-            cache.writeQuery({
-              query: QUERY_NOTES,
-              data: { notes: notes.filter((e) => e.id !== id) },
-            });
-          }}
-        >
-          {(deleteNote, { data }) => (
-            <button
-              onClick={(e) => {
-                deleteNote({
-                  variables: {
-                    id,
-                  },
-                });
-              }}
-            >
-              Delete
-            </button>
-          )}
-        </Mutation>
-      ) : (
-        <p>
-          You need to be logged in to use lightning notes. Please{" "}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )}
+    <div>
+      <button onClick={deleteNoteHandler}>Delete</button>
+      <Link to="/" exact>
+        <button>Cancel</button>
+      </Link>
     </div>
   );
 };

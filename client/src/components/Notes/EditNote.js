@@ -100,7 +100,7 @@ const EditNoteForm = () => {
               }}
             >
               <form onSubmit={handleFormSubmit} autoComplete="off">
-                <div className="row">
+                <div>
                   <label
                     htmlFor="title"
                     style={{ margin: "20px", paddingLeft: "25px" }}
@@ -114,10 +114,18 @@ const EditNoteForm = () => {
                     name="title"
                     required
                     onChange={onChangeInput}
-                    style={{ margin: "20px", padding: "10px", width: "70%" }}
+                    style={{ margin: "20px", padding: "10px", width: "50%" }}
                   />
                 </div>
-                <div className="row">
+                <div
+                  className="row"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <label
                     htmlFor="content"
                     style={{ margin: "20px", paddingLeft: "25px" }}
@@ -134,13 +142,13 @@ const EditNoteForm = () => {
                     cols="10"
                     placeholder="Type to add a note..."
                     onChange={onChangeInput}
-                    style={{ margin: "10px", width: "66%" }}
+                    style={{ margin: "5px", width: "66%" }}
                   />
                 </div>
-                <div className="row">
+                <div>
                   <label
                     htmlFor="createdAt"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
+                    style={{ margin: "20px", paddingLeft: "20px" }}
                   >
                     Date: {noteText.createdAt}
                   </label>
@@ -156,7 +164,7 @@ const EditNoteForm = () => {
                 </div>
                 <button
                   type="submit"
-                  style={{ margin: "30px", marginLeft: "100px" }}
+                  style={{ margin: "20px", marginLeft: "100px" }}
                 >
                   Save
                 </button>
@@ -164,9 +172,15 @@ const EditNoteForm = () => {
                 <IconButton aria-label="mark as important">
                   <StarBorderIcon />
                 </IconButton>
-                <IconButton aria-label="Return to Dashboard">
-                  <DashboardIcon />
-                </IconButton>
+                <Link to="/">
+                  <IconButton
+                    aria-label="Return to Dashboard"
+                    style={{ marginLeft: "100px" }}
+                  >
+                    <DashboardIcon />
+                    <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
+                  </IconButton>
+                </Link>
               </form>
             </Card>
           </Container>

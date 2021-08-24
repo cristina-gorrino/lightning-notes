@@ -98,7 +98,7 @@ const CreatNoteForm = () => {
               }}
             >
               <form onSubmit={handleFormSubmit} autoComplete="off">
-                <div className="row">
+                <div>
                   <label
                     htmlFor="title"
                     style={{ margin: "20px", paddingLeft: "25px" }}
@@ -115,11 +115,15 @@ const CreatNoteForm = () => {
                     style={{ margin: "20px", padding: "10px", width: "70%" }}
                   />
                 </div>
-                <div className="row">
-                  <label
-                    htmlFor="text"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
-                  >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <label htmlFor="text" style={{ margin: "15px" }}>
                     Content
                   </label>
                   <textarea
@@ -132,10 +136,10 @@ const CreatNoteForm = () => {
                     cols="10"
                     placeholder="Type to add a note..."
                     onChange={onChangeInput}
-                    style={{ margin: "10px", width: "66%" }}
+                    style={{ margin: "10px", width: "70%" }}
                   />
                 </div>
-                <div className="row">
+                <div>
                   <label
                     htmlFor="createdAt"
                     style={{ margin: "20px", paddingLeft: "25px" }}
@@ -162,9 +166,15 @@ const CreatNoteForm = () => {
                 <IconButton aria-label="mark as important">
                   <StarBorderIcon />
                 </IconButton>
-                <IconButton aria-label="Return to Dashboard">
-                  <DashboardIcon />
-                </IconButton>
+                <Link to="/">
+                  <IconButton
+                    aria-label="Return to Dashboard"
+                    style={{ marginLeft: "100px" }}
+                  >
+                    <DashboardIcon />
+                    <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
+                  </IconButton>
+                </Link>
               </form>
             </Card>
           </Container>

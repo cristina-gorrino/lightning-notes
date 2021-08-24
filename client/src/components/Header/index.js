@@ -24,13 +24,12 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link
-                to="/"
-                style={{ fontSize: "20px", margin: "25px", padding: "25px" }}
-              >
-                Welcome to Your Dashboard {Auth.getProfile().data.username}
+              <Link to="/" style={{ fontSize: "18px", margin: "10px" }}>
+                {Auth.getProfile().data.username}'s Dashboard
               </Link>
-              <button onClick={logout}>Logout</button>
+              <button onClick={logout} style={{ fontSize: "14px" }}>
+                Logout
+              </button>
             </>
           ) : (
             <>
