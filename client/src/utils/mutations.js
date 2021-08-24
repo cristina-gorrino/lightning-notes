@@ -78,13 +78,6 @@ mutation editNote( $noteId: ID!, $title: String!, $text: String!, $category: ID,
     createdAt
     starred
     category {
-      _id
-      title
-      text
-      noteAuthor
-      createdAt
-      starred
-      category {
         _id
         name
       }

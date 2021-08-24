@@ -14,7 +14,7 @@ const Header = () => {
       <div className="container">
         <div>
           <Link to="/">
-            <h1>
+            <h1 style={{fontSize: '35px'}}>
               <FlashOnIcon />
               Lightning Notes
               <FlashOnIcon />

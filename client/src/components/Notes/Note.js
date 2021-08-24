@@ -89,11 +89,6 @@ export default function Note(props) {
               <DeleteIcon />
             </IconButton>
           </Link>
-          <Link to={`/note-delete/${props.id}`}>
-            <IconButton aria-label="delete your note">
-              <DeleteIcon />
-            </IconButton>
-          </Link>
         </CardActions>
         </CardContent>
       </Container>
