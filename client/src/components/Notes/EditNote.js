@@ -36,22 +36,6 @@ const EditNoteForm = () => {
 
   console.log(noteText);
 
-  // const [addNote, { error }] = useMutation(ADD_NOTE, {
-  //   update(cache, { data: { addNote } }) {
-  //     try {
-  //       const { notes = [] } = cache.readQuery({ query: QUERY_NOTES })|| {};
-
-  //       cache.writeQuery({
-  //         query: QUERY_NOTES,
-  //         data: { notes: [addNote, ...notes] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //   },
-  // });
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(noteText.title);

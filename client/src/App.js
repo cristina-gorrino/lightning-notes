@@ -60,14 +60,8 @@ function App() {
         <Route exact path="/create-category">
           <CategoryForm />
         </Route>
-        {/* <Route exact path="/note-list">
-          <NoteList />
-        </Route> */}
         <Route exact path="/categories/:categoryId">
           <NoteList />
-        </Route>
-        <Route exact path="/note/:id">
-          <Note />
         </Route>
         <Route exact path="/notes/:id">
           <EditNote />

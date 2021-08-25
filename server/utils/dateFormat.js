@@ -39,6 +39,7 @@ module.exports = (
   };
 
   const dateObj = new Date(timestamp);
+  console.log(dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
   const formattedMonth = months[dateObj.getMonth()];
 
   const dayOfMonth = dateSuffix
@@ -62,6 +63,6 @@ module.exports = (
   const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
 
   const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${periodOfDay}`;
-
-  return formattedTimeStamp;
+console.log(formattedTimeStamp)
+  return dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
 };
