@@ -1,7 +1,7 @@
 import Note from "./Note";
 import IconButton from "@material-ui/core/IconButton";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -29,9 +29,7 @@ console.log(notes)
         <Container
           style={{
             height: "100%",
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "20px",
+            width: '100%',
           }}
         >
           <div className="notes-list">
@@ -39,13 +37,13 @@ console.log(notes)
               <div>Loading...</div>
             ) : (
               <div>
-                <h1 >Category: {category.name}</h1>
+                <h1 style={{fontSize: '25px', marginTop: '10px'}}>Category: {category.name}</h1>
               </div>
             )}
             {loading ? (
               <div>Loading...</div>
             ) : (
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <div style={{display: 'flex',justifyContent:'center', alignItems:'center', flexWrap: 'wrap'}}>
                 {notes.map((note) => (
                   <Note
                     key={note._id}
@@ -60,7 +58,7 @@ console.log(notes)
             <Link to="/">
               <IconButton
                 aria-label="Return to Dashboard"
-                style={{ marginLeft: "100px" }}
+                style={{ marginLeft: "50px" }}
               >
                 <DashboardIcon />
                 <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
@@ -69,7 +67,7 @@ console.log(notes)
             <Link to={{ pathname: "/create-note", hash: `${categoryId}` }}>
               <IconButton
                 aria-label="Add new Note"
-                style={{ marginLeft: "100px" }}
+                style={{ marginLeft: "50px" }}
               >
                 <AddCircleOutlineIcon />
                 <p style={{ marginLeft: "10px" }}>Create a new Note</p>

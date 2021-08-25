@@ -69,7 +69,7 @@ List of note under a Category
 ## Important Links 
 
 [GitHub Repository Link](https://github.com/cristina-gorrino/lightning-notes)
-[Link to GitHub deployed Webpage]()
+[Link to GitHub deployed Webpage](https://aqueous-everglades-37857.herokuapp.com/)
 
 ## Framework/Technolgies
 
@@ -81,13 +81,13 @@ node.js
 
 ## Contact Information
 
-Cristina Gorrino [Email](cgorrino03@gmail.com) [Github](https://github.com/cristina-gorrino)
+Cristina Gorrino cgorrino03@gmail.com [Github](https://github.com/cristina-gorrino)
 
-Vanessa Maldonado [Email](vbarajas4@gmail.com) [Github](https://github.com/vbarajas4)
+Vanessa Maldonado vbarajas4@gmail.com [Github](https://github.com/vbarajas4)
 
-Zahra Seyedi [Email](za.seyedi@gmail.com) [Github](https://github.com/zahra315)
+Zahra Seyedi za.seyedi@gmail.com [Github](https://github.com/zahra315)
 
-Michael Martinez [Email](martinez.michael02@gmail.com) [Github](https://github.com/Statikman619)
+Michael Martinez martinez.michael02@gmail.com [Github](https://github.com/Statikman619)
 
 
 

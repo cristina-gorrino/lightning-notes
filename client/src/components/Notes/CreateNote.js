@@ -89,7 +89,7 @@ const CreatNoteForm = () => {
             <Card
               style={{
                 maxWidth: 545,
-                margin: "50px",
+                marginTop:'10px',
                 backgroundColor: "#F5ECAE",
               }}
             >
@@ -97,7 +97,7 @@ const CreatNoteForm = () => {
                 <div>
                   <label
                     htmlFor="title"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
+                    style={{ margin: "10px", paddingLeft: "15px" }}
                   >
                     Title
                   </label>
@@ -108,7 +108,7 @@ const CreatNoteForm = () => {
                     name="title"
                     required
                     onChange={onChangeInput}
-                    style={{ margin: "20px", padding: "10px", width: "70%" }}
+                    style={{ margin: "10px", padding: "5px", width: "60%" }}
                   />
                 </div>
                 <div
@@ -119,7 +119,7 @@ const CreatNoteForm = () => {
                     alignItems: "center",
                   }}
                 >
-                  <label htmlFor="text" style={{ margin: "15px" }}>
+                  <label htmlFor="text">
                     Content
                   </label>
                   <textarea
@@ -132,13 +132,13 @@ const CreatNoteForm = () => {
                     cols="10"
                     placeholder="Type to add a note..."
                     onChange={onChangeInput}
-                    style={{ margin: "10px", width: "70%" }}
+                    style={{ margin: "5px", width: "80%" }}
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="createdAt"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
+                    style={{ margin: "10px", paddingLeft: "15px" }}
                   >
                     Date: {noteText.createdAt}
                   </label>
@@ -149,7 +149,7 @@ const CreatNoteForm = () => {
                     name="createdAt"
                     required
                     onChange={onChangeInput}
-                    style={{ margin: "20px", padding: "10px" }}
+                    style={{ margin: "10px", padding: "5px" }}
                   />
                 </div>
                 <button
@@ -162,7 +162,7 @@ const CreatNoteForm = () => {
                 <Link to="/">
                   <IconButton
                     aria-label="Return to Dashboard"
-                    style={{ marginLeft: "100px" }}
+                    style={{justifyContent: 'center'}}
                   >
                     <DashboardIcon />
                     <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
