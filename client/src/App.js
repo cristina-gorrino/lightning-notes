@@ -19,7 +19,7 @@ import CategoryForm from "./components/Notes/CategoryForm";
 import NoteList from "./components/Notes/NotesList";
 import EditNote from "./components/Notes/EditNote";
 import DeleteNote from "./components/Notes/DeleteNote";
-import Note from "./components/Notes/Note";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",

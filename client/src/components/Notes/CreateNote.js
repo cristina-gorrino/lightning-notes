@@ -66,8 +66,8 @@ const CreatNoteForm = () => {
 
       setNoteText("");
 
-      history.push(`/categories/${categoryId}`);
-      window.location.reload();
+      //history.push(`/categories/${categoryId}`);
+      //window.location.reload();
     } catch (err) {
       console.error(err);
     }

@@ -31,8 +31,8 @@ query notes ($username: String!) {
 }
 `;
 export const NOTES_BY_CATEGORY = gql`
-query notesCat ($categoryId: ID!) {
-  notesCat (category:$categoryId){
+query notesCat ($noteAuthor: String!, $categoryId: ID!) {
+  notesCat (noteAuthor:$noteAuthor, category:$categoryId){
     _id
     title
     text
