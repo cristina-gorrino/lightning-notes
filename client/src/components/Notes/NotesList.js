@@ -12,16 +12,17 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 const NotesList = () => {
   const { categoryId } = useParams();
+  const noteAuthor = Auth.getProfile().data.username
 
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {
     variables: { categoryId },
   });
   const { loading, data } = useQuery(NOTES_BY_CATEGORY, {
-    variables: { categoryId },
+    variables: { noteAuthor: noteAuthor, categoryId: categoryId },
   });
   const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category || [];
-
+console.log(notes)
   return (
     <div className="create-note">
       {Auth.loggedIn() ? (
