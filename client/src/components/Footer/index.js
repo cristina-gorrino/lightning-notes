@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <h4 style={{marginTop: '35px', marginLeft: '25px'}}>
+        <h4 style={{marginTop: '35px', marginLeft: '25px', fontSize: '20px'}}>
           Made with <span>❤️</span> by the Lightning Notes Team.
         </h4>
       </div>

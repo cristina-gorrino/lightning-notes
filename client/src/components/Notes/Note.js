@@ -16,6 +16,8 @@ import Container from '@material-ui/core/Container';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    flex: '1 0 33%',
+    marginBottom: '10px'
   },
   container: {
     display: "flex",
@@ -36,15 +38,12 @@ export default function Note(props) {
     <Container
       style={{
         display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        flex: "1 1 100px",
-        margin: "20px",
+        flex: "1 0 33.3%"
       }}
     >
       <CardContent
         className={classes.root}
-        style={{ margin: "5px", backgroundColor: "#F5ECAE" }}
+        style={{  backgroundColor: "#F5ECAE" }}
       >
         <p style={{ textAlign: "center", fontSize: "9px", marginTop: "10px" }}>
           Created: {props.createdAt}
