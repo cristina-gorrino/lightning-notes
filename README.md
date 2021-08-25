@@ -81,13 +81,13 @@ node.js
 
 ## Contact Information
 
-Cristina Gorrino [Email](cgorrino03@gmail.com) [Github](https://github.com/cristina-gorrino)
+Cristina Gorrino - Email: cgorrino03@gmail.com [Github](https://github.com/cristina-gorrino)
 
-Vanessa Maldonado [Email](vbarajas4@gmail.com) [Github](https://github.com/vbarajas4)
+Vanessa Maldonado - Email: vbarajas4@gmail.com [Github](https://github.com/vbarajas4)
 
-Zahra Seyedi [Email](za.seyedi@gmail.com) [Github](https://github.com/zahra315)
+Zahra Seyedi - Email: za.seyedi@gmail.com [Github](https://github.com/zahra315)
 
-Michael Martinez [Email](martinez.michael02@gmail.com) [Github](https://github.com/Statikman619)
+Michael Martinez - Email: martinez.michael02@gmail.com [Github](https://github.com/Statikman619)
 
 
 
