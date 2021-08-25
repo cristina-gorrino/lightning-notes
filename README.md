@@ -69,7 +69,7 @@ List of note under a Category
 ## Important Links 
 
 [GitHub Repository Link](https://github.com/cristina-gorrino/lightning-notes)
-[Link to GitHub deployed Webpage]()
+[Link to GitHub deployed Webpage](https://aqueous-everglades-37857.herokuapp.com/)
 
 ## Framework/Technolgies
 
