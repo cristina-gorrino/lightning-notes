@@ -40,11 +40,13 @@ module.exports = (
 
   const dateObj = new Date(timestamp);
   const newTime = dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
-  const d = new Date(newTime)
-  var mm = (d.getMonth() + 1).slice(-2);
-  var dd = d.getDate().slice(-2);
+  const d = new Date(dateObj)
+  var mm = d.getMonth() + 1;
+  mo =  mm < 10 ? '0' + mm : '' + mm;
+  var dd = d.getDate();
+  day =  dd < 10 ? '0' + dd : '' + dd;
   var yy = d.getFullYear();
-  var dueDateString = yy + '-' + mm + '-' + dd; //(US)
+  var dueDateString = yy + '-' + mo + '-' + day; //(US)
 
   const formattedMonth = months[dateObj.getMonth()];
 
@@ -69,6 +71,5 @@ module.exports = (
   const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
 
   const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${periodOfDay}`;
-console.log(formattedTimeStamp)
   return dueDateString
 };
