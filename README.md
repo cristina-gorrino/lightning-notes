@@ -81,7 +81,7 @@ node.js
 
 ## Contact Information
 
-Cristina Gorrino - Email: cgorrino03@gmail.com [Github](https://github.com/cristina-gorrino)
+Cristina Gorrino - [mailto](cgorrino03@gmail.com) [Github](https://github.com/cristina-gorrino)
 
 Vanessa Maldonado - Email: vbarajas4@gmail.com [Github](https://github.com/vbarajas4)
 
