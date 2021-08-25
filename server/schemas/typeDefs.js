@@ -34,7 +34,7 @@ const typeDefs = gql`
     user(username: String!): User
     note(noteId: ID!): Note
     notes(username: String!): [Note]
-    notesCat(category: ID!): [Note]
+    notesCat(noteAuthor: String!, category: ID!): [Note]
     categories : [Category]
     category(categoryId: ID!): Category
     

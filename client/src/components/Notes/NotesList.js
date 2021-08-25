@@ -1,7 +1,7 @@
 import Note from "./Note";
 import IconButton from "@material-ui/core/IconButton";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -12,12 +12,13 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 const NotesList = () => {
   const { categoryId } = useParams();
+  const noteAuthor = Auth.getProfile().data.username
 
   const categoryQuery = useQuery(QUERY_SINGLE_CATEGORY, {
     variables: { categoryId },
   });
   const { loading, data } = useQuery(NOTES_BY_CATEGORY, {
-    variables: { categoryId },
+    variables: { noteAuthor: noteAuthor, categoryId: categoryId },
   });
   const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category || [];
@@ -29,9 +30,7 @@ const NotesList = () => {
         <Container
           style={{
             height: "100%",
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "20px",
+            width: '100%',
           }}
         >
           <div className="notes-list">
@@ -39,13 +38,13 @@ const NotesList = () => {
               <div>Loading...</div>
             ) : (
               <div>
-                <h1 >Category: {category.name}</h1>
+                <h1 style={{fontSize: '25px', marginTop: '10px'}}>Category: {category.name}</h1>
               </div>
             )}
             {loading ? (
               <div>Loading...</div>
             ) : (
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <div style={{display: 'flex',justifyContent:'center', alignItems:'center', flexWrap: 'wrap'}}>
                 {notes.map((note) => (
                   <Note
                     key={note._id}
@@ -61,7 +60,7 @@ const NotesList = () => {
             <Link to="/">
               <IconButton
                 aria-label="Return to Dashboard"
-                style={{ marginLeft: "100px" }}
+                style={{ marginLeft: "50px" }}
               >
                 <DashboardIcon />
                 <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
@@ -70,7 +69,7 @@ const NotesList = () => {
             <Link to={{ pathname: "/create-note", hash: `${categoryId}` }}>
               <IconButton
                 aria-label="Add new Note"
-                style={{ marginLeft: "100px" }}
+                style={{ marginLeft: "50px" }}
               >
                 <AddCircleOutlineIcon />
                 <p style={{ marginLeft: "10px" }}>Create a new Note</p>

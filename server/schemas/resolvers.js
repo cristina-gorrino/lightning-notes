@@ -17,9 +17,9 @@ const resolvers = {
         .populate("category")
         .sort({ createdAt: -1 });
     },
-    notesCat: async (parent, { category }) => {
+    notesCat: async (parent, { noteAuthor, category }) => {
       const params = category ? { category } : {};
-      return await Note.find({category: params.category}).populate('category').sort({ starred: -1, createdAt: -1 });
+      return await Note.find({noteAuthor: noteAuthor, category: params.category}).populate('category').sort({ starred: -1, createdAt: -1 });
     },
     categories: async (parent, args) => {
       return await Category.find({});

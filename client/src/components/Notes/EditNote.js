@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import StarNote from './StarNote'
+import CardActions from "@material-ui/core/CardActions";
 
 import Auth from "../../utils/auth";
 
@@ -78,7 +79,7 @@ const EditNoteForm = () => {
             <Card
               style={{
                 maxWidth: 545,
-                margin: "20px",
+                marginTop: "10px",
                 backgroundColor: "#F5ECAE",
               }}
             >
@@ -86,7 +87,7 @@ const EditNoteForm = () => {
                 <div>
                   <label
                     htmlFor="title"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
+                    style={{ margin: "10px", paddingLeft: "15px" }}
                   >
                     Title
                   </label>
@@ -97,7 +98,7 @@ const EditNoteForm = () => {
                     name="title"
                     required
                     onChange={onChangeInput}
-                    style={{ margin: "20px", padding: "10px", width: "50%" }}
+                    style={{ marginTop: "10px", padding: "5px", width: "60%" }}
                   />
                 </div>
                 <div
@@ -109,10 +110,7 @@ const EditNoteForm = () => {
                     alignItems: "center",
                   }}
                 >
-                  <label
-                    htmlFor="content"
-                    style={{ margin: "20px", paddingLeft: "25px" }}
-                  >
+                  <label htmlFor="content">
                     Content
                   </label>
                   <textarea
@@ -125,13 +123,13 @@ const EditNoteForm = () => {
                     cols="10"
                     placeholder="Type to add a note..."
                     onChange={onChangeInput}
-                    style={{ margin: "5px", width: "66%" }}
+                    style={{ margin: "5px", width: "75%" }}
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="createdAt"
-                    style={{ margin: "20px", paddingLeft: "20px" }}
+                    style={{ margin: "10px", paddingLeft: "15px" }}
                   >
                     Due Date:
                   </label>
@@ -142,26 +140,29 @@ const EditNoteForm = () => {
                     name="dueDate"
                     required
                     onChange={onChangeInput}
-                    style={{ margin: "20px", padding: "10px" }}
+                    style={{ margin: "10px", padding: "5px" }}
                   />
                 </div>
+                <CardActions disableSpacing style={{justifyContent: 'center'}}>
                 <button
                   type="submit"
-                  style={{ margin: "20px", marginLeft: "100px" }}
+                  style={{ margin: "20px" }}
                 >
                   Save
                 </button>
                 {error && <div>{error.message}</div>}
                 <StarNote/>
+                </CardActions>
                 <Link to="/">
                   <IconButton
                     aria-label="Return to Dashboard"
-                    style={{ marginLeft: "100px" }}
+                    style={{ justifyContent: 'center' }}
                   >
                     <DashboardIcon />
                     <p style={{ marginLeft: "10px" }}>Go Back to Dashboard</p>
                   </IconButton>
                 </Link>
+                
               </form>
             </Card>
           </Container>
