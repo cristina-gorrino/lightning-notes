@@ -21,6 +21,7 @@ const NotesList = () => {
   });
   const notes = data?.notesCat || [];
   const category = categoryQuery.data?.category || [];
+  console.log(notes)
 
   return (
     <div className="create-note">
@@ -52,6 +53,7 @@ const NotesList = () => {
                     title={note.title}
                     text={note.text}
                     createdAt={note.createdAt}
+                    dueDate={note.dueDate}
                   />
                 ))}
               </div>

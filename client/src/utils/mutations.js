@@ -30,12 +30,14 @@ export const ADD_NOTE = gql`
     $text: String!
     $noteAuthor: String!
     $category: ID
+    $dueDate: String
   ) {
     addNote(
       title: $title
       text: $text
       noteAuthor: $noteAuthor
       category: $category
+      dueDate: $dueDate
     ) {
       _id
       title
@@ -47,6 +49,7 @@ export const ADD_NOTE = gql`
         _id
         name
       }
+      dueDate
     }
   }
 `;
@@ -69,8 +72,8 @@ export const DELETE_NOTE = gql`
 `;
 
 export const EDIT_NOTE = gql`
-mutation editNote( $noteId: ID!, $title: String!, $text: String!, $category: ID, $starred: Boolean) {
-  editNote(noteId:$noteId, title:$title, text:$text, category:$category, starred:$starred ) {
+mutation editNote( $noteId: ID!, $title: String!, $text: String!, $dueDate: String, $category: ID, $starred: Boolean) {
+  editNote(noteId:$noteId, title:$title, text:$text, dueDate: $dueDate, category:$category, starred:$starred ) {
     _id
     title
     text
@@ -81,6 +84,7 @@ mutation editNote( $noteId: ID!, $title: String!, $text: String!, $category: ID,
         _id
         name
       }
+      dueDate
     }
   }
 `;

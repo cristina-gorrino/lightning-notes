@@ -17,6 +17,7 @@ const typeDefs = gql`
     createdAt: String
     starred: Boolean!
     category: Category
+    dueDate: String
   }
 
   type Category {
@@ -42,10 +43,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addNote(title: String!, text: String!, noteAuthor: String!, category:ID): Note
+    addNote(title: String!, text: String!, noteAuthor: String!, category:ID, dueDate: String): Note
     addCategory(name: String!): Category
     deleteNote(noteId: ID!): Note
-    editNote(noteId:ID! title: String!, text: String!, category:ID, starred:Boolean): Note   
+    editNote(noteId:ID! title: String!, text: String!, dueDate:String, category:ID, starred:Boolean): Note   
    }
 `;
 

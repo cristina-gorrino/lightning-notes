@@ -52,6 +52,7 @@ const CreatNoteForm = () => {
     console.log(noteText);
     console.log(noteText.title);
     console.log(noteText.text);
+    console.log(noteText.dueDate);
 
     try {
       const { data } = await addNote({
@@ -60,6 +61,7 @@ const CreatNoteForm = () => {
           text: noteText.text,
           noteAuthor: Auth.getProfile().data.username,
           category: categoryId,
+          dueDate: noteText.dueDate,
         },
       });
       console.log(data);
@@ -140,13 +142,13 @@ const CreatNoteForm = () => {
                     htmlFor="createdAt"
                     style={{ margin: "20px", paddingLeft: "25px" }}
                   >
-                    Date: {noteText.createdAt}
+                    Due Date:
                   </label>
                   <input
                     type="date"
-                    value={noteText.createdAt}
-                    id="createdAt"
-                    name="createdAt"
+                    value={noteText.dueDate}
+                    id="dueDate"
+                    name="dueDate"
                     required
                     onChange={onChangeInput}
                     style={{ margin: "20px", padding: "10px" }}

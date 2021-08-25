@@ -41,11 +41,10 @@ module.exports = (
   const dateObj = new Date(timestamp);
   const newTime = dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
   const d = new Date(newTime)
-  var mm = d.getMonth() + 1;
-var dd = d.getDate();
-var yy = d.getFullYear();
-var myDateString = yy + '-' + mm + '-' + dd; //(US)
-console.log(myDateString)
+  var mm = (d.getMonth() + 1).slice(-2);
+  var dd = d.getDate().slice(-2);
+  var yy = d.getFullYear();
+  var dueDateString = yy + '-' + mm + '-' + dd; //(US)
 
   const formattedMonth = months[dateObj.getMonth()];
 
@@ -71,5 +70,5 @@ console.log(myDateString)
 
   const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${periodOfDay}`;
 console.log(formattedTimeStamp)
-  return dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  return dueDateString
 };

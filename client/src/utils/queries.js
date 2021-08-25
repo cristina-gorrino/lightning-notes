@@ -27,6 +27,7 @@ query notes ($username: String!) {
       _id
       name
     }
+    dueDate
   }
 }
 `;
@@ -42,6 +43,7 @@ query notesCat ($categoryId: ID!) {
       _id
       name
     }
+    dueDate
   }
 }
 `;
@@ -76,6 +78,7 @@ export const QUERY_SINGLE_NOTE = gql`
         _id
         name
       }
+      dueDate
     }
   }
 `;
