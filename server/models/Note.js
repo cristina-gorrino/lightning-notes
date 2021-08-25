@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const dueDateFormat = require('../utils/dueDateFormat')
 
 const noteSchema = new Schema({
   title: {
@@ -28,6 +29,10 @@ const noteSchema = new Schema({
   {
     type: Schema.Types.ObjectId,
     ref: 'Category',
+  },
+  dueDate: {
+    type: Date,
+    get: (timestamp) => dueDateFormat(timestamp),
   },
 
   

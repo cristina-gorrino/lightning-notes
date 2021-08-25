@@ -32,12 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Note(props) {
 
-  const dbtime = new Date(props.createdAt)
-  const today = new Date()
-  console.log(props.createdAt)
-  console.log(dbtime)
-  console.log(today);
-  console.log(today.getTimezoneOffset());
   const classes = useStyles();
 
   return (
@@ -63,10 +57,10 @@ export default function Note(props) {
 
         <form className={classes.container} noValidate>
           <TextField
-            id="date"
+            id="dueDate"
             label="Due Date"
             type="date"
-            defaultValue="2017-05-24"
+            defaultValue={(props.dueDate === "NaN-NaN-NaN") ?  "" : props.dueDate}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,

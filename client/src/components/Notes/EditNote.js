@@ -29,26 +29,22 @@ const EditNoteForm = () => {
     title: "",
     text: "",
     createdAt: "",
+    dueDate:""
   });
   useEffect(() => {
-    setNoteText({ title: note.title, text: note.text });
-  }, [note]);
-
-  console.log(noteText);
+    setNoteText({ title: note.title, text: note.text, dueDate:note.dueDate });
+  }, [note.title, note.text, note.dueDate]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(noteText.title);
-    console.log(noteText.text);
 
-    //still in progress
     try {
       const { data } = await updateNote({
         variables: {
-          // ...noteText,
           noteId: note._id,
           title: noteText.title,
           text: noteText.text,
+          dueDate: noteText.dueDate,
           category: note.category._id,
           starred:note.starred
         },
@@ -133,13 +129,13 @@ const EditNoteForm = () => {
                     htmlFor="createdAt"
                     style={{ margin: "10px", paddingLeft: "15px" }}
                   >
-                    Date: {noteText.createdAt}
+                    Due Date:
                   </label>
                   <input
                     type="date"
-                    value={noteText.createdAt}
-                    id="createdAt"
-                    name="createdAt"
+                    value={noteText.dueDate}
+                    id="dueDate"
+                    name="dueDate"
                     required
                     onChange={onChangeInput}
                     style={{ margin: "10px", padding: "5px" }}

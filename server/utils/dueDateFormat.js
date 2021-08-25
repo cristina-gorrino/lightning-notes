@@ -39,7 +39,18 @@ module.exports = (
   };
 
   const dateObj = new Date(timestamp);
-  const newTime = dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+
+  const displayTime = dateObj.toLocaleString("en-US", {timeZone:"UTC"})
+
+  // const newTime = dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  // console.log(newTime);
+  const d = new Date(displayTime)
+  var mm = d.getMonth() + 1;
+  mo =  mm < 10 ? '0' + mm : '' + mm;
+  var dd = d.getDate();
+  day =  dd < 10 ? '0' + dd : '' + dd;
+  var yy = d.getFullYear();
+  var dueDateString = yy + '-' + mo + '-' + day; //(US)
 
 
   const formattedMonth = months[dateObj.getMonth()];
@@ -65,6 +76,5 @@ module.exports = (
   const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
 
   const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${periodOfDay}`;
-
-  return dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  return dueDateString
 };

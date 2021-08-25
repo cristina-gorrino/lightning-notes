@@ -17,7 +17,6 @@ const CreatNoteForm = () => {
   const tmp = window.location.hash;
   const temp = tmp.split("#");
   const categoryId = temp[1];
-  console.log(categoryId);
 
   const history = useHistory();
 
@@ -48,10 +47,6 @@ const CreatNoteForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(Auth.getProfile().data.username);
-    console.log(noteText);
-    console.log(noteText.title);
-    console.log(noteText.text);
 
     try {
       const { data } = await addNote({
@@ -60,14 +55,15 @@ const CreatNoteForm = () => {
           text: noteText.text,
           noteAuthor: Auth.getProfile().data.username,
           category: categoryId,
+          dueDate: noteText.dueDate,
         },
       });
       console.log(data);
 
       setNoteText("");
 
-      //history.push(`/categories/${categoryId}`);
-      //window.location.reload();
+      history.push(`/categories/${categoryId}`);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -140,13 +136,13 @@ const CreatNoteForm = () => {
                     htmlFor="createdAt"
                     style={{ margin: "10px", paddingLeft: "15px" }}
                   >
-                    Date: {noteText.createdAt}
+                    Due Date:
                   </label>
                   <input
                     type="date"
-                    value={noteText.createdAt}
-                    id="createdAt"
-                    name="createdAt"
+                    value={noteText.dueDate}
+                    id="dueDate"
+                    name="dueDate"
                     required
                     onChange={onChangeInput}
                     style={{ margin: "10px", padding: "5px" }}

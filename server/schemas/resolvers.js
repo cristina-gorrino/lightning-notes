@@ -52,8 +52,8 @@ const resolvers = {
       return { token, user };
     },
 
-    addNote: async (parent, { title, text, noteAuthor, category }) => {
-      const note = await Note.create({ title, text, noteAuthor, category });
+    addNote: async (parent, { title, text, noteAuthor, category, dueDate }) => {
+      const note = await Note.create({ title, text, noteAuthor, category, dueDate });
 
       await User.findOneAndUpdate(
         { username: noteAuthor },
@@ -74,12 +74,14 @@ const resolvers = {
       const note = await Note.findOneAndDelete({ _id: noteId });
       return note;
     },
-    editNote: async (parent, {noteId, title, text, category, starred}) => {
+    editNote: async (parent, {noteId, title, text, dueDate, category, starred}) => {
+      const params = dueDate ? { dueDate } : {};
       const note = await Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
           text: text,
+          dueDate: params.dueDate,
           category: category,
           starred: starred,
         },

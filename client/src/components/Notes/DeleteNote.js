@@ -39,6 +39,7 @@ const DeleteNote = () => {
 
   return (
     <div>
+      <h2>Are you sure you want to delete this note?</h2>
       <button onClick={deleteNoteHandler}>Delete</button>
       <Link to="/" exact>
         <button>Cancel</button>
