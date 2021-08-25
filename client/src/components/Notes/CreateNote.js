@@ -17,7 +17,6 @@ const CreatNoteForm = () => {
   const tmp = window.location.hash;
   const temp = tmp.split("#");
   const categoryId = temp[1];
-  console.log(categoryId);
 
   const history = useHistory();
 
@@ -48,11 +47,6 @@ const CreatNoteForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(Auth.getProfile().data.username);
-    console.log(noteText);
-    console.log(noteText.title);
-    console.log(noteText.text);
-    console.log(noteText.dueDate);
 
     try {
       const { data } = await addNote({
@@ -68,8 +62,8 @@ const CreatNoteForm = () => {
 
       setNoteText("");
 
-      //history.push(`/categories/${categoryId}`);
-      //window.location.reload();
+      history.push(`/categories/${categoryId}`);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

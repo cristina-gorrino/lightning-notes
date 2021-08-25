@@ -11,7 +11,6 @@ import { QUERY_SINGLE_NOTE } from "../../utils/queries";
 
 const StarNote = (props) => {
   const noteId = useParams().id || props.noteId;
-  console.log(noteId);
 
   const [updateNote, {error}] = useMutation(EDIT_NOTE);
   const { loading, data } = useQuery( QUERY_SINGLE_NOTE, {
