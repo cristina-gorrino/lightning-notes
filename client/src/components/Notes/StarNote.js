@@ -18,10 +18,14 @@ const StarNote = (props) => {
   });
   const note = data?.note || [];
   console.log(note);
+  const currentStar = note.starred;
 
-
-const currentStar = note.starred;
-
+  // Handling in case due date is not set
+  const due = (note.dueDate === "NaN-NaN-NaN") ? (
+    null
+  ) : (
+    note.dueDate
+  )
 
   const starNoteHandler = async (e) => {
     e.preventDefault();
@@ -34,12 +38,13 @@ const currentStar = note.starred;
             title: note.title,
             text: note.text,
             category: note.category._id,
-            starred: !currentStar
+            starred: !currentStar,
+             dueDate: due
           },
         });
         console.log(data);
   
-        
+        window.location.reload();      
       } catch (err) {
         console.log(JSON.stringify(err, null, 2))
         console.error(err);

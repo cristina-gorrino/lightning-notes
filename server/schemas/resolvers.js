@@ -75,12 +75,13 @@ const resolvers = {
       return note;
     },
     editNote: async (parent, {noteId, title, text, dueDate, category, starred}) => {
+      const params = dueDate ? { dueDate } : {};
       const note = await Note.findByIdAndUpdate(
         noteId, 
         {
           title: title,
           text: text,
-          dueDate: dueDate,
+          dueDate: params.dueDate,
           category: category,
           starred: starred,
         },

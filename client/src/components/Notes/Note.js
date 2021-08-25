@@ -59,8 +59,8 @@ export default function Note(props) {
           <TextField
             id="dueDate"
             label="Due Date"
-            type="dueDate"
-            defaultValue={props.dueDate}
+            type="date"
+            defaultValue={(props.dueDate === "NaN-NaN-NaN") ?  "" : props.dueDate}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
