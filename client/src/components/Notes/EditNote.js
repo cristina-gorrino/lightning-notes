@@ -33,7 +33,7 @@ const EditNoteForm = () => {
   });
   useEffect(() => {
     setNoteText({ title: note.title, text: note.text, dueDate:note.dueDate });
-  }, [note]);
+  }, [note.title, note.text, note.dueDate]);
 
   console.log(noteText);
 
@@ -55,8 +55,8 @@ const EditNoteForm = () => {
 
       setNoteText("");
 
-      history.push(`/categories/${note.category._id}`);
-      window.location.reload();
+      //history.push(`/categories/${note.category._id}`);
+      //window.location.reload();
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
       console.error(err);

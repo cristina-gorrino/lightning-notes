@@ -39,14 +39,21 @@ module.exports = (
   };
 
   const dateObj = new Date(timestamp);
+
+  console.log(timestamp);
   const newTime = dateObj.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  console.log(newTime);
   const d = new Date(dateObj)
+  console.log(d);
   var mm = d.getMonth() + 1;
   mo =  mm < 10 ? '0' + mm : '' + mm;
   var dd = d.getDate();
   day =  dd < 10 ? '0' + dd : '' + dd;
   var yy = d.getFullYear();
   var dueDateString = yy + '-' + mo + '-' + day; //(US)
+  console.log(dd);
+  console.log(mm);
+  console.log(dueDateString);
 
   const formattedMonth = months[dateObj.getMonth()];
 
