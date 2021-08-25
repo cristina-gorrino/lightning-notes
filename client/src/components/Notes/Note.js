@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-//import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -30,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Note(props) {
+
+  const dbtime = new Date(props.createdAt)
+  const today = new Date()
+  console.log(props.createdAt)
+  console.log(dbtime)
+  console.log(today);
+  console.log(today.getTimezoneOffset());
   const classes = useStyles();
 
   return (
