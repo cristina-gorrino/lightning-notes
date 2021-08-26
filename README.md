@@ -3,16 +3,15 @@
 [Link to deployed Webpage](https://aqueous-everglades-37857.herokuapp.com/)
 
 ## Description
-This application is a note taker. The user can prioritize notes by pinning them and organize notes into categories.
 
+This application is a note taker. The user can prioritize notes by pinning them and organize notes into categories.
 
 ## User Story
 
 ```md
-AS A user 
+AS A user
 I WANT to organize my notes into categories
 SO THAT I can find them easily and be more organized.
-
 ```
 
 ## Project Outline
@@ -22,21 +21,21 @@ GIVEN the Lightning Notes application
 
 WHEN I am presented with the Login/Signup page
 THEN I should be able to login or signup with email and password.
-WHEN I am signed in 
-THEN it will take me to my dashboard page 
-WHEN I am in the dashboard page 
+WHEN I am signed in
+THEN it will take me to my dashboard page
+WHEN I am in the dashboard page
 THEN I can see the different categories I have created
-WHEN I click on a category 
+WHEN I click on a category
 THEN it will take me to the notes that are labeled under that category only
-WHEN I click on a note 
+WHEN I click on a note
 THEN I have the option to Update or Delete the note
-WHEN I am done updating or deleting a note 
+WHEN I am done updating or deleting a note
 THEN it will take me back to all my notes in that category
 WHEN I see all my notes
 THEN I can mark the star to show which notes are a priority to get done first.
-WHEN I see all my notes under a category 
+WHEN I see all my notes under a category
 THEN I can create a new note
-WHEN I create a new note 
+WHEN I create a new note
 THEN I can give it a title, description, a due date
 WHEN I am done creating my new note
 THEN it will take me back to all my notes in that category and the new note created will be added.
@@ -45,10 +44,9 @@ THEN I am presented with a button that will take me back to my dashboard where a
 WHEN I am in the dashboard
 THEN I have the option to create a new category
 WHEN I create a new category
-THEN I will have the option to select a category name from the given options 
+THEN I will have the option to select a category name from the given options
 WHEN the category is created
 THEN it will save and be added to the list of categories in the dashboard.
-
 ```
 
 ## Screenshot of my Live Github Page
@@ -65,8 +63,7 @@ Creating a note
 List of note under a Category
 <img width="1144" alt="Screen Shot 2021-08-23 at 9 35 58 PM" src="https://user-images.githubusercontent.com/79430431/130556526-35d66c71-c870-4929-aa6f-452203ab77cc.png">
 
-
-## Important Links 
+## Important Links
 
 [GitHub Repository Link](https://github.com/cristina-gorrino/lightning-notes)
 [Link to GitHub deployed Webpage]()
@@ -78,7 +75,6 @@ coolers
 Material-UI
 node.js
 
-
 ## Contact Information
 
 Cristina Gorrino [Email](cgorrino03@gmail.com) [Github](https://github.com/cristina-gorrino)
@@ -89,13 +85,11 @@ Zahra Seyedi [Email](za.seyedi@gmail.com) [Github](https://github.com/zahra315)
 
 Michael Martinez [Email](martinez.michael02@gmail.com) [Github](https://github.com/Statikman619)
 
-
-
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<font size="2">Copyright (c) 2021 Vanessa Maldonado</font>
+<font size="2">Copyright (c) Lightning Notes Team</font>
 
 <font size="1">Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -113,4 +107,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</font> 
+SOFTWARE.</font>
